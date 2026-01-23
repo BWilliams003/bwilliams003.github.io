@@ -4,7 +4,7 @@ layout: page
 {% assign theme = site.data.themes[site.ui_theme] %}
 
 <div class="blogcard {{ page.card }} mb-4 mt-4" style="width: 100%;">
-  <div class="card-body">
+  <div class="card-body journal-header">
     <h5 class="card-title text-center" style="font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">{{ page.title | markdownify | remove: '<p>' | remove: '</p>' }}</h5>
     <h6 class="card-subtitle text-center text-muted">{{ page.date | date: "%B %d, %Y" }}</h6>
     <p class="text-center"><a href="/cyse-201s/journals.html">&larr; Back to Journal Entries</a></p>
@@ -12,34 +12,56 @@ layout: page
 </div>
 
 <div class="card border-0" style="width: 100%;">
-  <div class="card-body">
+  <div class="card-body journal-content">
     {{ content }}
   </div>
 </div>
 
 <!-- Image Lightbox Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-    <div class="modal-content" style="background: transparent; border: none;">
-      <div class="modal-body text-center p-0">
-        <img id="modalImage" src="" class="img-fluid" style="max-height: 90vh; cursor: pointer;" onclick="$('#imageModal').modal('hide')">
+    <div class="modal-content" style="background: rgba(0,0,0,0.9); border: none;">
+      <div class="modal-header border-0" style="position: absolute; right: 0; top: 0; z-index: 1;">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="font-size: 2rem; opacity: 1;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center p-3">
+        <img id="modalImage" src="" class="img-fluid" style="max-height: 85vh; cursor: pointer;">
       </div>
     </div>
   </div>
 </div>
 
 <style>
-  .card-body img {
-    cursor: pointer;
+  /* Only make content images clickable, not header images */
+  .journal-content img {
+    cursor: zoom-in;
+  }
+  .journal-header img {
+    cursor: default;
   }
 </style>
 
 <script>
   $(document).ready(function() {
-    $('.card-body img').on('click', function() {
+    // Only attach click handler to images inside journal-content
+    $('.journal-content img').on('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       var imgSrc = $(this).attr('src');
       $('#modalImage').attr('src', imgSrc);
       $('#imageModal').modal('show');
+    });
+    
+    // Close modal when clicking the image
+    $('#modalImage').on('click', function() {
+      $('#imageModal').modal('hide');
+    });
+    
+    // Clear image src when modal closes to prevent stuck images
+    $('#imageModal').on('hidden.bs.modal', function () {
+      $('#modalImage').attr('src', '');
     });
   });
 </script>

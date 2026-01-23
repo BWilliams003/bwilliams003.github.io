@@ -2,14 +2,14 @@
 layout: page
 permalink: /blog.html
 title: My Blog
-description: I write about cyber threat intelligence
+description: 
 header-img:  
 last-updated: 2020-10-30 5:55 PM
 ---
 
 <!-- Medium Posts Section -->
 <h2>Medium Posts</h2>
-<p class="text-muted">Latest articles from my Medium account</p>
+<p class="text-muted">Latest articles from my Medium accounts</p>
 <hr>
 
 <div id="medium-posts">
@@ -17,69 +17,91 @@ last-updated: 2020-10-30 5:55 PM
 </div>
 
 <script>
-  const mediumUsername = 'B-Williams';
-  const rssFeed = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${mediumUsername}`;
+  const accounts = [
+    { username: 'B-Williams', filter: null },  // Show all posts
+    { username: 'DeepHat', filter: 'Bailey' }  // Only show posts containing "Bailey"
+  ];
   
-  fetch(rssFeed)
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById('medium-posts');
-      
-      if (data.status === 'ok' && data.items && data.items.length > 0) {
-        let html = '';
-        data.items.forEach(post => {
-          const date = new Date(post.pubDate).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          });
-          
-          // Extract first image from content if thumbnail not available
-          let thumbnail = post.thumbnail;
-          if (!thumbnail || thumbnail === '') {
-            const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
-            thumbnail = imgMatch ? imgMatch[1] : '';
+  // Fetch posts from all accounts
+  Promise.all(accounts.map(account => 
+    fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${account.username}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          let posts = data.items;
+          // Apply filter if specified
+          if (account.filter) {
+            posts = posts.filter(post => 
+              (post.title && post.title.toLowerCase().includes(account.filter.toLowerCase())) ||
+              (post.description && post.description.toLowerCase().includes(account.filter.toLowerCase())) ||
+              (post.content && post.content.toLowerCase().includes(account.filter.toLowerCase()))
+            );
           }
-          
-          html += `
-            <div class="blogcard card-1 mb-4 mt-4" style="width: 100%;">
-              ${thumbnail ? `<img src="${thumbnail}" class="card-img-top" alt="${post.title}" style="max-height: 200px; object-fit: cover;">` : ''}
-              <div class="card-body">
-                <h3><a href="${post.link}" target="_blank" rel="noopener">${post.title}</a></h3>
-                <p class="text-muted"><small>${date}</small></p>
-                <p>${post.description ? post.description.replace(/<[^>]*>/g, '').substring(0, 200) + '...' : ''}</p>
-                <a href="${post.link}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Read on Medium →</a>
-              </div>
-            </div>
-          `;
+          return posts;
+        }
+        return [];
+      })
+      .catch(() => [])
+  ))
+  .then(results => {
+    const container = document.getElementById('medium-posts');
+    
+    // Combine all posts and sort by date (newest first)
+    const allPosts = results.flat().sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+    
+    if (allPosts.length > 0) {
+      let html = '';
+      allPosts.forEach(post => {
+        const date = new Date(post.pubDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
         });
-        container.innerHTML = html;
-      } else {
-        container.innerHTML = '<p class="text-muted">No posts found. Check back later!</p>';
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching Medium posts:', error);
-      document.getElementById('medium-posts').innerHTML = 
-        '<p class="text-muted">Unable to load Medium posts. <a href="https://medium.com/@B-Williams" target="_blank">Visit my Medium profile →</a></p>';
-    });
+        
+        // Extract first image from content if thumbnail not available
+        let thumbnail = post.thumbnail;
+        if (!thumbnail || thumbnail === '') {
+          const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
+          thumbnail = imgMatch ? imgMatch[1] : '';
+        }
+        
+        html += `
+          <div class="medium-card mb-4 mt-4" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);">
+            <div style="display: flex; align-items: center; gap: 20px;">
+              <div style="flex: 1; min-width: 0;">
+                <h4 style="font-weight: 700; margin-bottom: 8px; line-height: 1.3;"><a href="${post.link}" target="_blank" rel="noopener" style="color: #242424; text-decoration: none;">${post.title}</a></h4>
+                <p style="color: #6b6b6b; margin-bottom: 16px; line-height: 1.5; font-size: 15px;">${post.description ? post.description.replace(/<[^>]*>/g, '').substring(0, 300) + '...' : ''}</p>
+                <p style="color: #6b6b6b; font-size: 13px; margin: 0;">${date}</p>
+              </div>
+              ${thumbnail ? `<img src="${thumbnail}" alt="${post.title}" style="width: 160px; height: 107px; object-fit: cover; border-radius: 4px; flex-shrink: 0;">` : ''}
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    } else {
+      container.innerHTML = '<p class="text-muted">No posts found. Check back later!</p>';
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching Medium posts:', error);
+    document.getElementById('medium-posts').innerHTML = 
+      '<p class="text-muted">Unable to load Medium posts.</p>';
+  });
 </script>
 
-<br>
-
-<!-- Local Blog Posts Section -->
+<!-- Local Blog Posts Section (commented out)
 {% if site.posts.size > 0 %}
+<br>
 <h2>Other Posts</h2>
 <hr>
-
 <div class="col-md-12">
 {% for post in site.posts %}
     <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
       <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
-        <a href="#" class="badge badge-primary" style="background-color: rgba(78, 34, 208, 0.1);color: #4e22d0;">{{post.tag}}</a>  
       <p>{{post.description}}</p>
-      <p><i>{{post.lead}}</i></p>
     </div>
 {% endfor %}
 </div>
 {% endif %}
+-->
