@@ -8,13 +8,13 @@
 # -----------BASE SETTINGS---------------#
 #========================================#
 
-title: B. Williams 
+title: Bailey Williams' Personal Website
 email: 
-description: a minimalistic jekyll theme for academics
+description:
 baseurl: ""                                    # leave empty for username.github.io, or "/repo-name" for project sites
 url: ""                                        # GitHub Pages will set this automatically
-image: /assets/img/dumbarton.png               # used to generate site link preview
-image_alt: A minimalistic jekyll theme for academic    # image description
+image: /assets/img/homepage-preview.png        # used to generate site link preview
+image_alt: B. Williams portfolio homepage              # image description
 
 # =======================================#
 # -----------SITE SETTINGS---------------#
