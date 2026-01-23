@@ -73,75 +73,39 @@ layout: default
   <div class="card-body">          
       <div class="tab-content mt-3">
         {% for section in site.data.sections %}
-          {% if section.first %}
-            {% if section.name == "Publications" %}
-              <div class="tab-pane active overflow-auto" id="{{section.id}}" role="tabpanel">
-                <p><i>{{section.description}}</i></p>
-                <p class="card-text">{% bibliography -f papers %}</p>
+          {% if section.name == "Coursework" %}
+            <div class="tab-pane {% if section.first %}active{% endif %} overflow-auto" id="{{section.id}}" role="tabpanel">
+              <p><i>{{section.description}}</i></p>
+              <div class="list-group">
+              {% for course in site.courses %}
+                <a href="{{ course.url }}" class="list-group-item list-group-item-action text-left">{{ course.title }}</a>
+              {% endfor %}
               </div>
-            {% else %}
-              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel">
-                <p class="card-text">{{section.description}}</p>
-              </div>
-            {% endif %}
-          {% else %}  
-            {% if section.name == "Presentations" %}
-              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <p><i>{{section.description}}</i></p>
-                <p class="card-text">{% bibliography -f presentations %}</p>              
-              </div>
-            {% elsif section.name == "Projects" %}
-              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <p><i>{{section.description}}</i></p>
-                  {% for projects in site.data.projects %}
-                  <div class="media mt-2">
-                    <a href="{{ projects.link }}"><img src="{{ projects.image }}" class="mr-3 mb-2 img-thumbnail border-0" alt="..."></a>
-                    <div class="media-body">
-                      <h5 class="mt-0"><a href="{{ projects.link }}" class="highlighted">{{ projects.name }}</a></h5>
-                      {{ projects.description }}
-                      {% if projects.tech %}
-                        <h6><mark><u>Technologies</u></mark></h6>
-                        {% for tech in projects.tech %}
-                        <span class="badge badge-secondary mr-1" style="background-color:{{ theme.projects-color }};">{{ tech }}</span>
-                        {% endfor %}
-                      {% endif %}
+            </div>
+          {% elsif section.name == "Conference Presentations" %}
+            <div class="tab-pane {% if section.first %}active{% endif %} overflow-auto" id="{{section.id}}" role="tabpanel">
+              <p><i>{{section.description}}</i></p>
+              <div class="accordion" id="talksAccordion">
+              {% for talk in site.data.talks %}
+                <div class="card mb-2">
+                  <div class="card-header p-2" id="talkHeading{{ forloop.index }}" style="cursor: pointer;" data-toggle="collapse" data-target="#talkCollapse{{ forloop.index }}" aria-expanded="false" aria-controls="talkCollapse{{ forloop.index }}">
+                    <h6 class="mb-1">{{ talk.Title }}</h6>
+                    <small class="text-muted">{{ talk.Conference }} &bull; {{ talk.Location }} &bull; {{ talk.date }}</small>
+                  </div>
+                  <div id="talkCollapse{{ forloop.index }}" class="collapse" aria-labelledby="talkHeading{{ forloop.index }}" data-parent="#talksAccordion">
+                    <div class="card-body">
+                      <p class="card-text">{{ talk.description }}</p>
                     </div>
                   </div>
-                  {% endfor %}
-                </div>        
-              </div>
-            {% elsif section.name == "Teaching" %}
-              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <p><i>{{section.description}}</i></p>
-                    {% for courses in site.data.teaching %}
-                    <div class="list-group">
-                      <div class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">{{ courses.Schoool }}</h5>
-                          <p>{{ courses.Program }}</p>
-                          <small>{{ courses.StartDate }} - {{ courses.EndDate }}</small>
-                        </div>
-                        <p class="mb-1">{{ courses.description }}</p>
-                        <small>{{ courses.Department }}</small>
-                      </div>
-                    </div>
-                    {% endfor %}
-              </div>
-            {% elsif section.name == "Coursework" %}
-              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <p><i>{{section.description}}</i></p>
-                <div class="list-group">
-                {% for courses in site.data.courses %}
-                  <button type="button" class="list-group-item text-left">{{ courses.Course }}</button>
-                {% endfor %}
                 </div>
+              {% endfor %}
               </div>
-            {% else %}
-              <div class="tab-pane overflow-auto" id="{{section.id}}" role="tabpanel" aria-labelledby="{{section.id}}-tab">  
-                <h5 class="card-title text-center"><a href="/{{ section.url }}" class="highlighted">{{section.description}}</a></h5>
-                <p class="card-text">{{ section.content }} </p>              
-              </div>
-            {% endif %}
+            </div>
+          {% else %}
+            <div class="tab-pane {% if section.first %}active{% endif %} overflow-auto" id="{{section.id}}" role="tabpanel">
+              <p><i>{{section.description}}</i></p>
+              <p class="card-text">{{ section.content }}</p>
+            </div>
           {% endif %}
         {% endfor %}
       </div>

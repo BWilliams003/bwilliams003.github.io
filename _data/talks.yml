@@ -1,0 +1,39 @@
+- Conference: RSA Conference 2025 | Adversary Village Sandbox
+  Title: "Hands-on activity: AI-Assisted cyber incident response playbook generation"
+  Location: San Francisco, CA
+  date: 04/29/2025
+  first: true
+  description: >
+    In this hands-on activity, participants will use an open-source generative AI model to build a dynamic, effective incident response playbook to deal with real-world cyber threats. Using the GPT systems speed and adaptability, the participants get to collect and analyze threat intelligence, map potential attack scenarios, and outline step-by-step response actions for each phase from detection and containment to eradication and recovery. <br><br> Through interactive prompts and guided AI model collaboration, participants will craft a flexible, well-structured IR playbook designed to counter evolving adversary tactics and minimize organizational impact during an incident.
+
+- Conference: "Deep Drive: A. I. Summit"
+  Title: "Fireside Chat: Panel with Barclays and Kindo A.I."
+  Location: Virtual, Corpus-Christi, TX
+  date: 04/18/2025
+  first: false
+  description: >
+    I participated in a fireside chat with the Computer Science Society Club at Texas A&M University-Corpus Christi where we discussed the use of AI in the workplace and the future of AI.
+
+- Conference: Security BSides Charm 2025
+  Title: "Supercharge Your Workflow: Using WhiteRabbitNeo for AI-Powered Analysis"
+  Location: Towson, MD
+  date: 04/13/2025
+  first: false
+  description: >
+    Pair hacking with WhiteRabbitNeo, an uncensored, open-source LLM trained on red team data, speeds up your process and reduces the tedium inherent in most security roles. Learn how WhiteRabbitNeo can help you harden your source code and improve configuration security while reducing hours of DevSecOps tasks to minutes.
+
+- Conference: CyberForge 2025
+  Title: "WhiteRabbitNeo: Augmenting the Cybersecurity Student Experience with AI"
+  Location: Newport News, VA
+  date: 03/22/2025
+  first: false
+  description: >
+    No one expects university courses to prepare cybersecurity students for everything they will encounter in their careers, but university education especially struggles with teaching hands-on skills traditionally learned on the job with a mentor. <br><br> Unfortunately, these days Cybersecurity is not a beginner-friendly industry and finding a mentor in the field is not accessible to most students. In this talk, I will explain how students can use WhiteRabbitNeo, an open-source, uncensored AI model trained on red team and offensive cybersecurity data, to enhance their cybersecurity knowledge, and especially build hands-on skills by pair hacking with it for CTFs and Bug Bounty programs. <br><br> Since contributing to the open-source project, I have used WhiteRabbitNeo to work through problems the way I would with a mentor. It has distilled complex information into simple concepts and explained them with increasing complexity until I understood and helped me break down CTF problems when I am stuck.  I will show you how to use it to support you in CTF challenges and more. 
+
+- Conference: Security BSides London 2024
+  Title: "Threat analysis in minutes and other AI superpowers"
+  Location: London, UK
+  date: 12/14/2024
+  first: false
+  description: >
+    AI models trained specifically for security are here, why should devs have all the fun? Pair hacking with tools like WhiteRabbitNeo speeds up your process and reduces tedium inherent in most security roles. WhiteRabbitNeo is an uncensored, open-source LLM that has been trained on red team data. Learn how WhiteRabbitNeo can help you harden your source code and improve configuration security while reducing hours of DevSecOps tedium to minutes. WhiteRabbitNeo will research vulnerabilities, propose exploits, and help package malware payloads while you focus on the creative side of cybersecurity: crafting the perfect delivery method for the exploit. <br><br> Using AI models often means sharing information with AI companies and running into guardrails that keep you from accomplishing cybersecurity tasks. I contribute to WhiteRabbitNeo to help build a community-driven, open source alternative. During this talk I will teach attendees from the beginner cybersecurity enthusiast to the senior cyber analyst how to use AI how to learn new concepts, create custom hacking tools in any language, analyze code, and complete threat analysis tasks in seconds rather than hours.

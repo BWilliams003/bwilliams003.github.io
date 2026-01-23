@@ -22,6 +22,20 @@ code {
     font: 0.85em Monaco, Courier, Monospace;
 }
 
+/* Blockquote styling */
+blockquote {
+    border-left: 4px solid #0066cc;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    background-color: #f8f9fa;
+    font-style: italic;
+    color: #555;
+}
+
+blockquote p {
+    margin-bottom: 0;
+}
+
 
 a.highlighted, a.highlighted:link {
   color: black;
@@ -605,10 +619,22 @@ background-image: url(https://ionicframework.com/img/getting-started/ionic-nativ
 }
 } 
 
-a:link {color: black;}      /* unvisited link */
-a:visited {color: black;}   /* visited link */
-a:hover {color: black;}     /* mouse over link */
-a:active {color: black;}    /* selected link */
+/* Content links - make them visible */
+.card-text a, .card-body p a, .container p a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.card-text a:hover, .card-body p a:hover, .container p a:hover {
+  color: #004499;
+  text-decoration: underline;
+}
+
+/* Navigation and other links stay black */
+a:link {color: black;}
+a:visited {color: black;}
+a:hover {color: black;}
+a:active {color: black;}
 
 
 

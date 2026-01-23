@@ -1,0 +1,45 @@
+---
+layout: page
+---
+{% assign theme = site.data.themes[site.ui_theme] %}
+
+<div class="blogcard {{ page.card }} mb-4 mt-4" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title text-center" style="font-size:{{ theme.post-title-size }};font-weight:{{ theme.post-font-weight }};">{{ page.title | markdownify | remove: '<p>' | remove: '</p>' }}</h5>
+    <h6 class="card-subtitle text-center text-muted">{{ page.date | date: "%B %d, %Y" }}</h6>
+    <p class="text-center"><a href="/cyse-201s/journals.html">&larr; Back to Journal Entries</a></p>
+  </div>
+</div>
+
+<div class="card border-0" style="width: 100%;">
+  <div class="card-body">
+    {{ content }}
+  </div>
+</div>
+
+<!-- Image Lightbox Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content" style="background: transparent; border: none;">
+      <div class="modal-body text-center p-0">
+        <img id="modalImage" src="" class="img-fluid" style="max-height: 90vh; cursor: pointer;" onclick="$('#imageModal').modal('hide')">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-body img {
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  $(document).ready(function() {
+    $('.card-body img').on('click', function() {
+      var imgSrc = $(this).attr('src');
+      $('#modalImage').attr('src', imgSrc);
+      $('#imageModal').modal('show');
+    });
+  });
+</script>

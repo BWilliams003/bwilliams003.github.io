@@ -4,14 +4,18 @@ links:
 - title: About
   url: about.html
 
-- title: Publications
-  url: publications.html
+- title: Courses
+  dropdown:
+  - title: "CYSE 201S: Cybersecurity and the Social Sciences"
+    url: /courses/cyse-201s.html
+  - title: "CYSE 368: Cybersecurity Internship"
+    url: /courses/cyse-368.html
 
 - title: Blog
   url: blog.html
 
-- title: Vitae
-  url: /assets/pdf/vitae.pdf
+- title: Resume
+  url: /assets/pdf/resume.pdf
 
 - title: Contact
   url: contact.html

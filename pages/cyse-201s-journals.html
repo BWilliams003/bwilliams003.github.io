@@ -1,0 +1,25 @@
+---
+layout: page
+permalink: /cyse-201s/journals.html
+title: "CYSE 201S: Journal Entries"
+description: Weekly reflections on cybersecurity topics and career exploration.
+last-updated: 2026-01-23
+---
+
+<p><a href="/courses/cyse-201s.html">&larr; Back to CYSE 201S</a></p>
+
+<h1>Journal Entries</h1>
+<p class="text-muted">Weekly reflections on cybersecurity topics and career exploration.</p>
+
+<hr>
+
+{% assign journals = site.cyse201s_journals | sort: 'date' | reverse %}
+{% for journal in journals %}
+<div class="card mb-4">
+  <div class="card-body">
+    <h4 class="card-title"><a href="{{ journal.url }}">{{ journal.title | markdownify | strip_html }}</a></h4>
+    <p class="card-subtitle mb-2 text-muted">{{ journal.date | date: "%B %d, %Y" }}</p>
+    <p class="card-text">{{ journal.description }}</p>
+  </div>
+</div>
+{% endfor %}
