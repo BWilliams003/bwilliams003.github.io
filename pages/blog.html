@@ -7,39 +7,79 @@ header-img:
 last-updated: 2020-10-30 5:55 PM
 ---
 
-<!-- Page Content -->
-  {% if site.twitter-widget %}
-  <div class="row">
-    <!-- Blog Entries Column -->
-    <div class="col-md-8">
-          <div class="col-md-12">
-          {% for post in site.posts %}
-              <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
-                <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
-                  <a href="#" class="badge badge-primary" style="background-color: rgba(78, 34, 208, 0.1);color: #4e22d0;">{{post.tag}}</a>  
-                <p>{{post.description}}</p>
-                <p><i>{{post.lead}}</i></p>
-              </div>
-          {% endfor %}
-          </div>
-    </div>
-    <!-- Twitter Side Widget -->
-    <div class="card my-4 shadow border-0">
-        <a class="twitter-timeline" data-height="2300" data-theme="light" href="https://twitter.com/{{ site.twitter }}?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>           
-    </div>
-  </div>
-  {% else %}
-    <!-- Blog Entries Column -->
-      <div class="col-md-12">
-      {% for post in site.posts %}
-          <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
-            <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
-              <a href="#" class="badge badge-primary" style="background-color: rgba(78, 34, 208, 0.1);color: #4e22d0;">{{post.tag}}</a>  
-            <p>{{post.description}}</p>
-            <p><i>{{post.lead}}</i></p>
-          </div>
-      {% endfor %}
-      </div>
-    </div>
-  {% endif %}
+<!-- Medium Posts Section -->
+<h2>Medium Posts</h2>
+<p class="text-muted">Latest articles from my Medium account</p>
+<hr>
 
+<div id="medium-posts">
+  <p class="text-center"><i>Loading posts...</i></p>
+</div>
+
+<script>
+  const mediumUsername = 'B-Williams';
+  const rssFeed = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${mediumUsername}`;
+  
+  fetch(rssFeed)
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById('medium-posts');
+      
+      if (data.status === 'ok' && data.items && data.items.length > 0) {
+        let html = '';
+        data.items.forEach(post => {
+          const date = new Date(post.pubDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          
+          // Extract first image from content if thumbnail not available
+          let thumbnail = post.thumbnail;
+          if (!thumbnail || thumbnail === '') {
+            const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
+            thumbnail = imgMatch ? imgMatch[1] : '';
+          }
+          
+          html += `
+            <div class="blogcard card-1 mb-4 mt-4" style="width: 100%;">
+              ${thumbnail ? `<img src="${thumbnail}" class="card-img-top" alt="${post.title}" style="max-height: 200px; object-fit: cover;">` : ''}
+              <div class="card-body">
+                <h3><a href="${post.link}" target="_blank" rel="noopener">${post.title}</a></h3>
+                <p class="text-muted"><small>${date}</small></p>
+                <p>${post.description ? post.description.replace(/<[^>]*>/g, '').substring(0, 200) + '...' : ''}</p>
+                <a href="${post.link}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Read on Medium →</a>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+      } else {
+        container.innerHTML = '<p class="text-muted">No posts found. Check back later!</p>';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching Medium posts:', error);
+      document.getElementById('medium-posts').innerHTML = 
+        '<p class="text-muted">Unable to load Medium posts. <a href="https://medium.com/@B-Williams" target="_blank">Visit my Medium profile →</a></p>';
+    });
+</script>
+
+<br>
+
+<!-- Local Blog Posts Section -->
+{% if site.posts.size > 0 %}
+<h2>Other Posts</h2>
+<hr>
+
+<div class="col-md-12">
+{% for post in site.posts %}
+    <div class="blogcard {{post.card}} mb-4 mt-4" style="width: 100%;">
+      <h3><a href="{{ post.url }}" class="nohighlight">{{ post.title }}</a></h3>
+        <a href="#" class="badge badge-primary" style="background-color: rgba(78, 34, 208, 0.1);color: #4e22d0;">{{post.tag}}</a>  
+      <p>{{post.description}}</p>
+      <p><i>{{post.lead}}</i></p>
+    </div>
+{% endfor %}
+</div>
+{% endif %}
