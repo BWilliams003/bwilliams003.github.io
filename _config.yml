@@ -8,9 +8,9 @@
 # -----------BASE SETTINGS---------------#
 #========================================#
 
-title: Bailey Williams' Personal Website
+title: B. Williams
 email: 
-description:
+description: Personal Website
 baseurl: ""                                    # leave empty for username.github.io, or "/repo-name" for project sites
 url: ""                                        # GitHub Pages will set this automatically
 image: /assets/img/homepage-preview.png        # used to generate site link preview
