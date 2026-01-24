@@ -101,6 +101,9 @@ collections:
   cyse201s_journals:
     output: true
     permalink: /cyse-201s/journals/:name.html
+  cyse200t_articles:
+    output: true
+    permalink: /cyse-200t/articles/:name.html
 
 include:
   - _posts

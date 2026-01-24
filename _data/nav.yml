@@ -6,10 +6,16 @@ links:
 
 - title: Courses
   dropdown:
+  - title: "CYSE 200T: Cybersecurity, Technology, and Society"
+    url: /courses/cyse-200t.html
   - title: "CYSE 201S: Cybersecurity and the Social Sciences"
     url: /courses/cyse-201s.html
   - title: "CYSE 368: Cybersecurity Internship"
     url: /courses/cyse-368.html
+  - title: "GT 2803: Global Leadership"
+    url: /courses/gt-2803.html
+  - title: "IDS 300W: Interdisciplinary Theories and Concepts"
+    url: /courses/ids-300w.html
 
 - title: Blog
   url: blog.html
