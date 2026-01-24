@@ -16,9 +16,16 @@ links:
     url: /courses/gt-2803.html
   - title: "IDS 300W: Interdisciplinary Theories and Concepts"
     url: /courses/ids-300w.html
+  - title: "POLS 309: Race, Culture and Public Policy"
+    url: /courses/pols-309.html
+  - title: "POLS 418: Quantitative Methods"
+    url: /courses/pols-418.html
 
 - title: Blog
   url: blog.html
+
+- title: About LeADERS
+  url: /leaders-program.html
 
 - title: Resume
   url: /assets/pdf/resume.pdf
