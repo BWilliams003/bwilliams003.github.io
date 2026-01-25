@@ -22,29 +22,86 @@ last-updated: 2020-10-30 5:55 PM
   </div>
 </div>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <div class="card shadow">
   <div class="container">
-    <form name="contact" method="POST" data-netlify="true">
+    <form id="contactForm">
       <div class="mb-3 mt-5">
-        <input type="name" placeholder="Your Name" name="name" class="form-control" id="inputForName"/>
+        <input type="text" placeholder="Your Name" name="name" class="form-control" id="inputForName" required/>
       </div>
       <div class="mb-3">
-        <textarea type="message" placeholder="Your Message" name="message" class="form-control" id="inputforMessage"></textarea>
+        <input type="email" placeholder="Your Email" name="email" class="form-control" id="inputforEmail" required>
       </div>
       <div class="mb-3">
-        <input type="email" placeholder="Your Email" name="email" class="form-control" id="inputforEmail">
+        <textarea placeholder="Your Message" name="message" class="form-control" id="inputforMessage" rows="5" required></textarea>
+      </div>
+      <div class="mb-3">
+        <div class="g-recaptcha" data-sitekey="6LcyqFUsAAAAAMCdW-LbSTZip-Mu4nrk4kBPrfF9"></div>
       </div>
       <button type="submit" class="btn mb-4" style="background-color:{{theme.default-button-color}};">Submit</button>
     </form>
+    <div id="formStatus" class="mb-4" style="display: none;"></div>
   </div>
 </div>
 
-
-
-
 <script>
-function startClippy(){
-    new ClipboardJS('.btn');
-}
-window.onload = startClippy;
+// Replace this URL with your Google Apps Script Web App URL
+const FORMEASY_URL = 'https://script.google.com/macros/s/AKfycbzmru9Or16J12TXnCn_3EbNYj502hTDA_BFjyevz9Rsnrj8ZN6-iF2WMvPJJtZ-5Wj4HQ/exec';
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const submitBtn = this.querySelector('button[type="submit"]');
+  const statusDiv = document.getElementById('formStatus');
+  
+  // Check reCAPTCHA
+  const recaptchaResponse = grecaptcha.getResponse();
+  if (!recaptchaResponse) {
+    statusDiv.style.display = 'block';
+    statusDiv.className = 'alert alert-warning mb-4';
+    statusDiv.innerHTML = '⚠ Please complete the reCAPTCHA verification.';
+    return;
+  }
+  
+  // Disable button and show loading
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = 'Sending...';
+  
+  const data = {
+    name: document.getElementById('inputForName').value,
+    email: document.getElementById('inputforEmail').value,
+    message: document.getElementById('inputforMessage').value,
+    gCaptchaResponse: recaptchaResponse
+  };
+  
+  fetch(FORMEASY_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(res => res.json())
+  .then(response => {
+    statusDiv.style.display = 'block';
+    statusDiv.className = 'alert alert-success mb-4';
+    statusDiv.innerHTML = '✓ Message sent successfully! I\'ll get back to you soon.';
+    document.getElementById('contactForm').reset();
+    grecaptcha.reset(); // Reset reCAPTCHA after successful submission
+  })
+  .catch(err => {
+    statusDiv.style.display = 'block';
+    statusDiv.className = 'alert alert-danger mb-4';
+    statusDiv.innerHTML = '✗ Something went wrong. Please try again or email me directly.';
+    console.error('Error:', err);
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Submit';
+  });
+});
 </script>
+
+
+
