@@ -141,7 +141,16 @@ detectphone: yes                                  # yes or no. Disable automatic
 x-dns-prefetch-control: on                        # on or off. Completely opt out of DNS prefetching by setting to "off"
 fbappid:                                          # Facebook OpenGraph 
 
-
-
-
 pgp-key: ""
+
+# =======================================#
+# --------- SECURITY SETTINGS -----------#
+# Fix: SNYK-HTML-CONTACT-001/002         #
+# Centralizes sensitive config values    #
+# to prevent hardcoding in templates.    #
+# OWASP A01:2021, A02:2021              #
+#========================================#
+# NOTE: recaptcha_sitekey is a PUBLIC key (safe to commit for v2 checkbox)
+# NOTE: formeasy_url - consider using GitHub Secrets + CI for true privacy
+recaptcha_sitekey: "6LcyqFUsAAAAAMCdW-LbSTZip-Mu4nrk4kBPrfF9"
+formeasy_url: "https://script.google.com/macros/s/AKfycbzmru9Or16J12TXnCn_3EbNYj502hTDA_BFjyevz9Rsnrj8ZN6-iF2WMvPJJtZ-5Wj4HQ/exec"
