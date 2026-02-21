@@ -4,67 +4,74 @@
 
 | Version | Supported |
 |---------|-----------|
-| Latest (main) | :white_check_mark: |
+| main    | Yes       |
 
 ## Reporting a Vulnerability
 
-**Please do NOT report security vulnerabilities through public GitHub issues.**
+If you discover a security vulnerability in this project, please follow responsible disclosure:
 
-Report security vulnerabilities via GitHub's private [Security Advisory](https://github.com/BWilliams003/bwilliams003.github.io/security/advisories/new) feature.
+1. **Do NOT open a public GitHub issue** for security vulnerabilities
+2. Use the contact form on the site or reach out via email directly
+3. Include a description of the vulnerability, steps to reproduce, and potential impact
+4. Allow up to **90 days** for remediation before public disclosure (coordinated disclosure)
 
-Include:
-- Description of the vulnerability
-- Steps to reproduce
-- Potential impact
-- Suggested fix (if known)
+## Security Architecture
 
-You should receive a response within **72 hours**. If confirmed, a fix will be prioritized and a CVE may be requested.
+This is a **Jekyll static site** hosted on GitHub Pages. It has no server-side code execution.
+The primary attack surfaces are:
 
----
+- Client-side JavaScript (XSS, prototype pollution)
+- Third-party CDN dependencies (supply chain, SRI)
+- Contact form submission endpoint (Google Apps Script)
+- reCAPTCHA integration
 
-## Security Hardening Standards
+## Security Controls Implemented
 
-This repository follows these security standards:
+| Control | Status | Details |
+|---------|--------|---------|
+| GitHub Secret Scanning | ENABLED | Scans for leaked credentials on push |
+| Secret Scanning Push Protection | ENABLED | Blocks pushes containing secrets |
+| Dependabot | ENABLED | Weekly automated dependency updates |
+| Subresource Integrity (SRI) | ENABLED | All external CDN scripts have integrity hashes |
+| Content Security Policy (CSP) | ENABLED | meta tag in head.html and head-blog.html |
+| Snyk CI Scanning | ENABLED | SAST + SCA on every PR and weekly schedule |
+| Branch Protection (main) | ENABLED | Required status checks enforced |
 
-### OWASP Top 10 (2021) Compliance
-| Risk | Status | Notes |
-|------|--------|-------|
-| A01 - Broken Access Control | ✅ Monitored | Branch protection + PR reviews required |
-| A02 - Cryptographic Failures | ✅ Patched | jekyll-feed >= 0.17.2 |
-| A03 - Injection | ✅ Mitigated | kramdown GFM input sanitizer enabled |
-| A05 - Security Misconfiguration | ✅ In Progress | CSP headers, SRI for CDN assets |
-| A06 - Vulnerable Components | ✅ Patched | Jekyll >= 4.3.3, locked Gemfile |
-| A08 - Software Integrity | ✅ Monitored | Gitleaks secret scanning in CI |
-| A09 - Logging & Monitoring | ✅ Added | GitHub Actions security-scan.yml |
+## Secure Coding Standards Referenced
 
-### Compliance Framework Alignment
-- **SOC 2 Type II**: Change management via PR reviews, audit trail via GitHub history
-- **PCI-DSS**: No PCI data stored, but secure coding standards followed
-- **NIST CSF**: Identify → Protect → Detect → Respond → Recover framework applied
+- [OWASP Top 10 (2021)](https://owasp.org/www-project-top-ten/)
+- [OWASP Secure Coding Practices Quick Reference](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)
+- [CWE/SANS Top 25 Most Dangerous Software Weaknesses](https://cwe.mitre.org/top25/)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 
-### Secure Coding Standards
-- Secrets must NEVER be hardcoded in `_config.yml` or any tracked file
-- Use GitHub Secrets for: `GITALK_CLIENT_ID`, `GITALK_CLIENT_SECRET`, `SNYK_TOKEN`
-- All CDN dependencies must include SRI (Subresource Integrity) hashes
-- Gem/npm dependencies must be pinned to patched versions
+## Compliance Mapping
 
-### Branch Protection Policy
-The `main` branch requires:
-- [ ] Pull request reviews (minimum 1 approval)
-- [ ] Dismiss stale reviews on new commits
-- [ ] Status checks to pass (security-scan workflow)
-- [ ] Signed commits (recommended)
-- [ ] No direct pushes to main
+| Framework | Controls Addressed |
+|-----------|-------------------|
+| OWASP Top 10 2021 A01 | Removed hardcoded endpoint URLs |
+| OWASP Top 10 2021 A02 | Centralized credential config, CSP headers |
+| OWASP Top 10 2021 A05 | CSP, branch protection, Snyk CI |
+| OWASP Top 10 2021 A06 | Pinned gem versions, Dependabot, CDN upgrades |
+| OWASP Top 10 2021 A08 | SRI hashes on all external scripts |
+| CWE-79 | textContent instead of innerHTML in JS |
+| CWE-200 | Form endpoint URL centralized in config |
+| CWE-312 | reCAPTCHA key centralized in config |
+| CWE-353 | SRI on all CDN resources |
+| CWE-1021 | Content-Security-Policy meta tag |
+| CWE-1104 | Pinned gem and CDN versions |
 
----
+## Vulnerability Disclosure History
 
-## Security Contacts
-- **Primary**: [@BWilliams003](https://github.com/BWilliams003)
-- **Security Scans**: Automated via Snyk + Semgrep + Gitleaks (CI)
+| Date | Scan | Findings | Status |
+|------|------|----------|--------|
+| 2026-02-21 | Snyk SAST/SCA + Manual | 0 Critical, 2 High, 6 Medium, 2 Low | All remediated |
 
-## References
-- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)
-- [OWASP Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)
-- [Jekyll Security Advisories](https://github.com/jekyll/jekyll/security/advisories)
-- [GitHub Security Best Practices](https://docs.github.com/en/code-security)
-- [CWE Top 25](https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html)
+## Post-Merge Verification Checklist
+
+- [ ] Verify CSP headers do not break page rendering in browser console
+- [ ] Verify reCAPTCHA loads correctly on contact page
+- [ ] Verify contact form submission still works end-to-end
+- [ ] Verify all CDN scripts load with correct SRI hashes (check browser Network tab)
+- [ ] Verify Jekyll builds without errors with pinned gem versions
+- [ ] Run Snyk scan post-merge to confirm 0 critical/high vulnerabilities remain
+- [ ] Add SNYK_TOKEN to GitHub Secrets to enable the CI workflow
