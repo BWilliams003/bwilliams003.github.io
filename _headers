@@ -1,0 +1,31 @@
+# ================================================================
+# HTTP Security Headers — _headers (Netlify / Cloudflare Pages format)
+# For GitHub Pages + Cloudflare: configure via Cloudflare Page Rules
+# Resolves: VULN-IaC-003 (MEDIUM) — Missing Security Headers
+# OWASP A05:2021 - Security Misconfiguration / CWE-693
+# PCI-DSS 6.4.1 | SOC2 CC6.6
+# Last updated: 2026-02-22 by Kindo Security Bot
+# ================================================================
+
+/*
+  # Prevent XSS attacks by whitelisting trusted sources
+  # Allows: self, Font Awesome CDN, inline styles (required by Jekyll theme)
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://kit.fontawesome.com https://cdn.fontawesome.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; img-src 'self' data: https:; connect-src 'self' https://ka-f.fontawesome.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+
+  # Prevent clickjacking attacks (CWE-451)
+  X-Frame-Options: DENY
+
+  # Prevent MIME type sniffing attacks (CWE-430)
+  X-Content-Type-Options: nosniff
+
+  # Enforce HTTPS for 2 years, include subdomains, allow preload (PCI-DSS 4.2.1)
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # Control referrer information leakage (GDPR / Privacy)
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Disable unused browser APIs to reduce attack surface
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()
+
+  # Prevent information disclosure via X-Powered-By
+  X-Powered-By:
