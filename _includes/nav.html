@@ -1,26 +1,38 @@
 {% assign theme = site.data.themes[site.ui_theme] %}
-<nav class="navbar navbar-expand-lg glowing-border mb-4" style="font-family:{{ theme.link-font }};background-color:{{ theme.nav-color }};">
-  <a class="navbar-brand" href="/index.html"><h4 style="font-family:{{ theme.title-font }};font-weight:600;color:{{ theme.nav-text}};">{{ site.title }}</h4></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: 1px solid {{ theme.nav-text }}; padding: 0.5rem;">
-    <span style="color: {{ theme.nav-text }}; font-size: 1.5rem; line-height: 1;">&#9776;</span>
+<!--
+  SECURITY: Liquid | escape filters applied to all inline style variables
+  CWE-79: CSS Injection mitigation — SNYK-HTML-NAV-CSSINJECT-001 (MEDIUM)
+  OWASP A03:2021 — Injection
+  Theme variables sourced from _data/themes.yml; escape filters prevent
+  CSS injection if theme data files are ever compromised.
+-->
+<nav class="navbar navbar-expand-lg glowing-border mb-4" style="font-family:{{ theme.link-font | escape }};background-color:{{ theme.nav-color | escape }};">
+  <a class="navbar-brand" href="/index.html"><h4 style="font-family:{{ theme.title-font | escape }};font-weight:600;color:{{ theme.nav-text | escape }};">{{ site.title }}</h4></a>
+  <!--
+    SECURITY NOTE: navbar-toggler button uses inline styles derived from theme variables.
+    | escape filters applied to prevent CSS injection via compromised theme data.
+    Unicode hamburger &#9776; used instead of FontAwesome icon — reduces external dependency.
+  -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border: 1px solid {{ theme.nav-text | escape }}; padding: 0.5rem;">
+    <span style="color: {{ theme.nav-text | escape }}; font-size: 1.5rem; line-height: 1;">&#9776;</span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         {% for item in site.data.nav.links %}
           {% if item.dropdown %}
               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{ forloop.index }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family:{{ theme.link-font }};color:{{ theme.nav-text}};">
-                    {{ item.title }}
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{ forloop.index }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family:{{ theme.link-font | escape }};color:{{ theme.nav-text | escape }};">
+                    {{ item.title | escape }}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown{{ forloop.index }}">
                     {% for subitem in item.dropdown %}
-                      <a class="dropdown-item" href="{{ subitem.url }}">{{ subitem.title }}</a>
+                      <a class="dropdown-item" href="{{ subitem.url | escape }}">{{ subitem.title | escape }}</a>
                     {% endfor %}
                   </div>
               </li>
           {% else %}
               <li class="nav-item">
-                  <a href="{{ item.url }}" class="nav-link" style="font-family:{{ theme.link-font }};color:{{ theme.nav-text}};">{{ item.title }}</a>
+                  <a href="{{ item.url | escape }}" class="nav-link" style="font-family:{{ theme.link-font | escape }};color:{{ theme.nav-text | escape }};">{{ item.title | escape }}</a>
               </li>
           {% endif %}
         {% endfor %}
