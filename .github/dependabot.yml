@@ -1,0 +1,49 @@
+version: 2
+
+# ============================================================
+# Dependabot Configuration — bwilliams003.github.io
+# Added: 2026-02-22 by Kindo Security Bot
+# ============================================================
+# Automates dependency updates to maintain security posture
+# Implements: PCI-DSS Req 6.3.3, SOC2 CC7.1, OWASP A06:2021
+# ============================================================
+
+updates:
+  # ── Ruby / Bundler (Gemfile) ───────────────────────────────
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "America/New_York"
+    # Limit open PRs to avoid noise
+    open-pull-requests-limit: 5
+    # Auto-label security update PRs
+    labels:
+      - "security"
+      - "dependencies"
+    commit-message:
+      prefix: "fix(deps)"
+      include: "scope"
+    # Reviewers for security updates
+    reviewers:
+      - "BWilliams003"
+    # Ignore patch versions for non-security gems to reduce noise
+    ignore:
+      - dependency-name: "jekyll-watch"
+        update-types: ["version-update:semver-patch"]
+
+  # ── GitHub Actions ─────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "security"
+      - "github-actions"
+    commit-message:
+      prefix: "fix(ci)"
