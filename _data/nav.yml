@@ -4,7 +4,7 @@ links:
     url: /leaders-program.html
 
   - title: Reflection
-    url: reflection.html
+    url: /reflection.html
 
   - title: Skills
     dropdown:
@@ -33,13 +33,13 @@ links:
         url: /courses/pols-418.html
 
   - title: Talks
-    url: talks.html
+    url: /talks.html
 
   - title: Blog
-    url: blog.html
+    url: /blog.html
 
   - title: Resume
     url: /resume.html
 
   - title: Contact
-    url: contact.html
+    url: /contact.html
