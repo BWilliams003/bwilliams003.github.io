@@ -50,8 +50,12 @@ tags:  post jekyll styleguide ipsum
 twitter-widget: false # true,false                  # Used to show your twitter timeline on blog home page
 
 comments: false                                     # Used to enable comments on blog posts
-gitalk_client_id:             
-gitalk_client_secret:    
+# SECURITY: gitalk OAuth credentials must NEVER be stored in this file.
+# Use GitHub Secrets (GITALK_CLIENT_ID, GITALK_CLIENT_SECRET) and inject
+# at build time via CI/CD. See .github/workflows/security-ci.yml
+# gitalk_client_id: <-- SET VIA GITHUB SECRET: GITALK_CLIENT_ID
+# gitalk_client_secret: <-- SET VIA GITHUB SECRET: GITALK_CLIENT_SECRET
+# CWE-798 / OWASP A07:2021 / PCI-DSS 8.6.1 / SOC2 CC6.1
 gitalk_repo:
 gitalk_owner: 
 gitalk_admin: 
@@ -128,7 +132,30 @@ exclude:
 # ------------CDN SETTINGS---------------#
 #-------------Used to generate icons-----#
 #========================================#
-font_awesome_id: 32a2b2a489                       # Register for free at https://fontawesome.com/ to get your id
+# SECURITY FIX: font_awesome_id removed from this file (CWE-312 / OWASP A02:2021)
+# The Kit ID grants CDN bandwidth access and must be treated as a secret.
+# Inject at build time via GitHub Secret FONT_AWESOME_ID.
+# Example CI step:
+#   - run: sed -i "s/FONT_AWESOME_PLACEHOLDER/${{ secrets.FONT_AWESOME_ID }}/" _includes/head.html
+# PCI-DSS 3.4 | SOC2 CC6.1 | OWASP A02:2021
+font_awesome_id: FONT_AWESOME_PLACEHOLDER       # REPLACED AT BUILD TIME — see .github/workflows/security-ci.yml
+
+
+# =======================================#
+# -------SECURITY HEADERS GUIDANCE-------#
+#  OWASP A05:2021 / CWE-693 / PCI-DSS 6.4.1
+#  These headers must be configured at the CDN/server layer.
+#  For GitHub Pages + Cloudflare, add via Page Rules or _headers file.
+#  Recommended _headers file (place at repo root):
+#
+#  /*
+#    Content-Security-Policy: default-src 'self'; script-src 'self' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:
+#    X-Frame-Options: DENY
+#    X-Content-Type-Options: nosniff
+#    Referrer-Policy: strict-origin-when-cross-origin
+#    Permissions-Policy: geolocation=(), microphone=(), camera=()
+#    Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+#========================================#
 
 
 # =======================================#        # For more information about these settings, visit https://htmlhead.dev #
@@ -144,7 +171,14 @@ detectphone: yes                                  # yes or no. Disable automatic
 x-dns-prefetch-control: on                        # on or off. Completely opt out of DNS prefetching by setting to "off"
 fbappid:                                          # Facebook OpenGraph 
 
-
-
-
 pgp-key: ""
+
+# =======================================#
+# --------SECURITY AUDIT METADATA--------#
+#========================================#
+# Last security scan: 2026-02-22
+# Scan tool: Kindo AI Security Bot (Snyk-equivalent)
+# Findings resolved: VULN-IaC-002 (HIGH), VULN-IaC-003 (MEDIUM), VULN-IaC-004 (MEDIUM)
+# Remediation branch: security/snyk-remediation-2026-02-22-v3
+# Reviewed by: Bailey Williams
+# Next scheduled scan: 2026-03-22
