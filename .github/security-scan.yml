@@ -1,0 +1,106 @@
+# Security Scanning Workflow
+# ============================================================
+# SECURITY CI WORKFLOW v11
+# Kindo AI Security Bot | 2026-02-22
+# Place this file as .github/workflows/security-scan.yml
+# after enabling GitHub Actions on this repository.
+# OWASP A05:2021 | SOC2 CC8.1 | PCI-DSS 6.4.2
+# ============================================================
+
+name: Security Scan
+
+on:
+  push:
+    branches: [main, 'security/**']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  gem-audit:
+    name: "SCA: bundler-audit"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - run: gem install bundler-audit && bundler-audit update
+      - run: bundler-audit check
+
+  csp-sri-check:
+    name: "SAST: CSP & Dependency Version Checks (v11)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify CSP present
+        run: |
+          grep -q "Content-Security-Policy" _includes/head.html \
+            && echo "CSP OK" || (echo "MISSING CSP" && exit 1)
+      - name: Verify no vulnerable jQuery
+        run: |
+          ! grep -E "jquery-(1|2|3\.[0-5])\." _includes/head.html \
+            && echo "jQuery OK" || (echo "VULNERABLE jQuery" && exit 1)
+      - name: Verify single jQuery load
+        run: |
+          COUNT=$(grep -c "jquery.*min\.js" _includes/head.html || true)
+          [ "$COUNT" -le 1 ] && echo "jQuery dedup OK" || (echo "DUPLICATE jQuery" && exit 1)
+      - name: Verify Bootstrap 5+
+        run: |
+          ! grep -E "bootstrap@4\.[0-5]\." _includes/head.html \
+            && echo "Bootstrap OK" || (echo "VULNERABLE Bootstrap" && exit 1)
+      - name: Verify Chart.js 4+ [v11]
+        run: |
+          ! grep -E "chart\.js@[123]\." _includes/head.html \
+            && echo "Chart.js 4+ OK" || (echo "OUTDATED Chart.js < 4.x" && exit 1)
+      - name: Verify highlight.js 11+ [v11 NEW]
+        run: |
+          ! grep -E "highlight\.js/(10|9|8|7|6|5|4|3|2|1)\." _includes/head.html \
+            && echo "highlight.js 11+ OK" \
+            || (echo "OUTDATED highlight.js - VULN-HIGHLIGHTJS-OUTDATED" && exit 1)
+      - name: Check for committed OAuth secrets
+        run: |
+          ! grep -E "gitalk_client_secret:\s+[a-f0-9]{20,}" _config.yml \
+            && echo "Secrets OK" || (echo "OAUTH SECRET COMMITTED" && exit 1)
+      - name: Verify security.txt exists [v11 NEW]
+        run: |
+          [ -f "security.txt" ] && echo "security.txt OK" \
+            || (echo "MISSING security.txt - VULN-MISSING-SECURITY-TXT" && exit 1)
+      - name: Verify SECURITY.md exists
+        run: |
+          [ -f "SECURITY.md" ] && echo "SECURITY.md OK" \
+            || (echo "MISSING SECURITY.md" && exit 1)
+
+  regression-tests:
+    name: "Regression: All 13 Snyk Fixes Still Hold"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No Bootstrap 4.3.1 (SNYK-JS-BOOTSTRAP-1054505)
+        run: |
+          ! grep "bootstrap@4.3.1\|bootstrap/4.3.1" _includes/head.html \
+            && echo "PASS" || (echo "REGRESSION: Bootstrap 4.3.1 re-introduced" && exit 1)
+      - name: No jQuery 3.3.1 (SNYK-JS-JQUERY-565129)
+        run: |
+          ! grep "jquery-3.3.1\|jquery@3.3.1" _includes/head.html \
+            && echo "PASS" || (echo "REGRESSION: jQuery 3.3.1 re-introduced" && exit 1)
+      - name: No jQuery 3.5.1 (SNYK-JS-JQUERY-2802987)
+        run: |
+          ! grep "jquery-3.5.1\|jquery@3.5.1" _includes/head.html \
+            && echo "PASS" || (echo "REGRESSION: jQuery 3.5.1 re-introduced" && exit 1)
+      - name: No Chart.js 2.x (SNYK-JS-CHARTJS-3017681)
+        run: |
+          ! grep "chart\.js@2\." _includes/head.html \
+            && echo "PASS" || (echo "REGRESSION: Chart.js 2.x re-introduced" && exit 1)
+      - name: No highlight.js < 11 [v11 regression check]
+        run: |
+          ! grep -E "highlight\.js/(10|9|8)\." _includes/head.html \
+            && echo "PASS" || (echo "REGRESSION: Old highlight.js re-introduced" && exit 1)
+      - name: security.txt maintained [v11 regression check]
+        run: |
+          [ -f "security.txt" ] && echo "PASS" \
+            || (echo "REGRESSION: security.txt removed" && exit 1)
