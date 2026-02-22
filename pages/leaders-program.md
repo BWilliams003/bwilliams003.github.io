@@ -11,7 +11,7 @@ last-updated: 2026-01-23
 I joined the Learning through Active Discovery, Engagement, Reflection, and Showcase (LeADERS) program towards the end of my time at Old Dominion University (ODU). This program helped me to articulate the skills I gained through my college coursework, including:
 <br>
 - Leadership skills gained through Global Leadership
-- Recognition for my cybersecurity intenrship at Kindo
+- Recognition for my cybersecurity internship at Kindo
 - A deeper understanding of other cultures and identities through Race, Culture and Public Policy
 - Effective conduction of quantitative research through Quantitative Methods
 - and finally, Strong research and academic writing skills through Interdisciplinary Theories and Concepts 

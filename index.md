@@ -1,9 +1,48 @@
 ---
 layout: home
 title: 
-date: 2020-11-20 
----
-### Hi, I'm Bailey 👋
-Welcome to my ePortfolio! I am an undergraduate student in ODU’s School of Cybersecurity and Department of Political Science & Geography, where I am pursuing a BS in Cybersecurity and a BS in Political Science with a Major in International Affairs and Global Politics with an expected graduation date of May 2026. I am concurrently employed as a cybersecurity engineer at Kindo, where I work on ways to utilize artificial intelligence to optimize security workflows. My professional interests include cybersecurity education, artificial intelligence, and psychology. In my free time, I enjoy traveling, reading, and learning new languages. 
+date: 2020-11-20
+intro: |
+  ### Hi, I'm Bailey 👋
+  *Cybersecurity Engineer | AI Security | International Affairs*
 
-<a href="/contact.html" class="highlighted">Contact Me</a>
+  Welcome to my ePortfolio! I am an undergraduate student in ODU's School of Cybersecurity and Department of Political Science & Geography, where I am pursuing a BS in Cybersecurity and a BS in Political Science with a Major in International Affairs and Global Politics with an expected graduation date of May 2026. I am concurrently employed as a cybersecurity engineer at Kindo, where I work on ways to utilize artificial intelligence to optimize security workflows. My professional interests include cybersecurity education, artificial intelligence, and psychology. In my free time, I enjoy traveling, reading, and learning new languages.
+
+  <a href="/contact.html" class="highlighted">Contact Me</a>
+---
+
+## $whoami
+
+My entire life, I have always been interested in the behind the scenes of how things operate. I have found comfort in understanding the "why" behind decisions and seeing how the different pieces fall together into the final product released for the world to see. This interest in the why and how has drawn me to the world of cybersecurity, where if the job is done correctly outsiders never know the actions you take to ensure systems remain secure and operational. This interest also drew me to the world of political science, where large-scale events have the potential to disrupt even the most minute details of everyday life, including in cyberspace.
+
+### Early Influences
+
+Technology and computers have always played a significant role in my life. Growing up, my dad primarily worked in public safety, meaning I was exposed early on to the role that technology plays in emergency response and how to prepare for events where technology may not be readily available. This was my first introduction to incident response and business continuity plans, showing me why emergency preparedness and risk analysis are fundamental, as well as the understanding that not everything will go according to plan. I always knew that I wanted to support something greater than myself and to help protect people.
+
+My first exposure to cybersecurity came in 2014 when *Captain America: The Winter Soldier* was released. It is the first Marvel movie I remember watching, and in it, Natasha Romanoff, a.k.a Black Widow, utilizes her psychology and computer skills to hack into Hydra (Marvel's Nazi equivalent) and take down their operation, saving thousands of lives. While this was obviously a superhero movie, the idea that someone was able to make such an impact without having any superpowers really resonated with me.
+
+Soon after that, my family moved to Virginia Beach, Virginia, and I started middle school. When we moved, I began researching the school system, and discovered the Governor's STEM and Technology Academy, at Landstown High School. This academy required an extensive STEM-focused portfolio to be accepted, and I spent the next three years working toward the singular academic goal of being accepted into the academy and enrolling in the cybersecurity pathway. As part of my application, in eighth grade I taught myself HTML and CSS to design a website for my babysitting business and studied basic database principles. That year, I was also first truly exposed to politics in my civics class. As I have always had a love for traveling and learning about different cultures and languages, my interest in politics soon deepened into an interest in international affairs and U.S. foreign policy, which served as a backdrop to my growing interest in cybersecurity. Since then, I have firmly believed in the importance of understanding how current events shape and direct the nature of cyberattacks, and that cybersecurity measures should be informed by the impact of current events on technology.
+
+After being accepted into the academy, I spent four years learning basic networking and cybersecurity principles, culminating in achieving my CompTIA Security+ certification my senior year. My freshman year, my cybersecurity teacher, Mr. Neal Alberson, a Georgia Institute of Technology (Georgia Tech) alumnus inspired me to work toward attending Georgia Tech by nurturing my love for understanding how systems work.
+
+### Undergraduate Journey
+
+I was ultimately accepted by Georgia Tech, and enrolled there once graduating from Landstown High School. Georgia Tech, however, did not offer an undergraduate degree in cybersecurity, and I did not feel the same connection to my computer engineering courses as I did to my previous cybersecurity ones. Alongside my computer engineering major, I had decided to double major in international affairs and modern languages (IAML), whose classes I found to be incredibly interesting. After speaking with professors at Georgia Tech, I realized that at most I'd be able to take two courses related to cybersecurity, which ultimately led me to decide to transfer to Old Dominion University (ODU), as it did not make sense for me to remain as an out-of-state IAML major. Before that point, however, I interned as a customer service representative at Kindo, an artificial intelligence (AI) security startup, which was my first real exposure to AI and where I learned how to explain technical concepts to non-technical people. I also spent a semester abroad at the Technical University of Denmark (DTU). At DTU, I took courses related to cybersecurity for the first time since high school, and was reminded of how much I enjoyed the field. After completing my exchange program, I ultimately decided to transfer to ODU.
+
+At ODU, I immediately jumped into my cybersecurity curriculum, taking every available opportunity to build on my skill set, whether that was teaching myself tshark (a command-line network analysis tool) for an extra credit assignment or choosing to take cryptography to challenge myself and strengthen my understanding of cryptographic algorithms. In addition, I started taking courses toward a major in political science, before switching to a major in international affairs & global politics, which allowed me to continue my study of political science with an emphasis on international relations.
+
+Throughout my time at ODU, the interdisciplinary emphasis in my courses enabled me to strengthen the connection between my majors by allowing me to focus my papers on topics that combined international affairs and cybersecurity. For example, in Research Design (POLS 308), I designed a research survey that would work to understand the gaps in IT understanding among non-technical ODU faculty and staff. This also helped me to better understand how to communicate the value of my degrees, demonstrating how they are actually more connected than most would expect. In addition, my cybersecurity courses, particularly Cybersecurity Internship (CYSE 368) and Electronic Portfolio Project (IDS 493), have helped me learn how to communicate my skills and experiences in a way that has helped shape my personal brand. As I prepare to graduate from ODU, I have begun to reflect upon my experiences and have realized that my personal brand centers around protecting people and systems, solving problems, and having the agency to strengthen my own skills (Montañez, 2023). These ideas in turn shape how I conduct myself both at work and in my classes, ensuring that my contributions are in line with how I want to be represented.
+
+### Early Career Path
+
+The summer after I transferred to ODU, I returned to Kindo, this time as a Cybersecurity Intern. This position allowed me to investigate how open-source AI models could be utilized in conjunction with open-source tool use programs to automate different aspects of cybersecurity. Later on that summer, I also began to write blogs on how AI can augment cybersecurity workflows and attended DefCon 32, my first cybersecurity conference. That fall, I remained at Kindo while going back to school full time, and continued to develop content around AI and cybersecurity. This led to me giving my first talk at Security BSides London on how AI can help improve your cybersecurity workflows.
+
+Since then, I've given more talks at various conferences from Newport News, Virginia to San Francisco, California, and have worked at Kindo's booth at many additional conferences, presenting live product demos to industry professionals. A few months later, my role changed to focus more on ensuring Kindo's compliance with cybersecurity standards and day-to-day IT operations. This past October, I was offered a full-time position at Kindo as a Cybersecurity Engineer, where I will remain after graduating from ODU in a few months with dual Bachelor of Science degrees in Cybersecurity and International Affairs & Global Politics.
+
+### What's Next?
+
+After graduation in May 2026, I plan to continue working at Kindo, focusing on how AI can be used to transform cybersecurity operations. In addition, I plan to deepen my cybersecurity knowledge by studying networking principles in more depth, spending time learning how to deploy and secure a web server, and continuing to follow how current events shape the cybersecurity landscape. Ultimately, I hope to continue to ensure that systems are safe, reliable, and dependable for those who use them.
+
+### References
+
+Montañez, R. (2023, September 4). How to define, develop, and communicate your personal brand. *Harvard Business Review*. [https://hbr.org/2023/09/how-to-define-develop-and-communicate-your-personal-brand](https://hbr.org/2023/09/how-to-define-develop-and-communicate-your-personal-brand)

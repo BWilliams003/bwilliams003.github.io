@@ -17,6 +17,36 @@ layout: page
   </div>
 </div>
 
+<!-- Previous/Next Navigation -->
+{% assign journals = site.cyse201s_journals | sort: 'date' %}
+{% assign journals_size = journals | size %}
+{% for journal in journals %}
+  {% if journal.url == page.url %}
+    {% assign current_index = forloop.index0 %}
+    {% if current_index > 0 %}
+      {% assign prev_index = current_index | minus: 1 %}
+      {% assign prev_journal = journals[prev_index] %}
+    {% endif %}
+    {% assign next_index = current_index | plus: 1 %}
+    {% if next_index < journals_size %}
+      {% assign next_journal = journals[next_index] %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<div class="d-flex justify-content-between mt-4 mb-4">
+  <div>
+    {% if next_journal %}
+      <a href="{{ next_journal.url }}" class="btn btn-outline-secondary">&larr; {{ next_journal.title }}</a>
+    {% endif %}
+  </div>
+  <div>
+    {% if prev_journal %}
+      <a href="{{ prev_journal.url }}" class="btn btn-outline-secondary">{{ prev_journal.title }} &rarr;</a>
+    {% endif %}
+  </div>
+</div>
+
 <!-- Image Lightbox Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">

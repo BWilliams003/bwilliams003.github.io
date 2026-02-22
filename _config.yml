@@ -98,6 +98,9 @@ collections:
   courses:
     output: true
     permalink: /courses/:name.html
+  skills:
+    output: true
+    permalink: /skills/:name.html
   cyse201s_journals:
     output: true
     permalink: /cyse-201s/journals/:name.html

@@ -19,7 +19,7 @@ While both cybersecurity training and adopting new cybersecurity technologies ar
 ### Conclusion
 In conclusion, up-to-date cybersecurity training is important due to the large number of cyberattacks that have a human component. Updated cybersecurity technology is also important as it ensures the company is keeping up with the ever-changing technical landscape. To determine which aspect of cybersecurity, training or updated technology, is most important to direct funding towards, the CISO should conduct tests to identify existing weak spots in the cybersecurity architecture and allocate funds accordingly.
 
-References
+### References
 Canham, M. (2022, April 29). *The Good, the Bad, and the Ugly of Security Awareness*. Mimecast. [https://www.mimecast.com/blog/the-good-the-bad-and-the-ugly-of-security-awareness/](https://www.mimecast.com/blog/the-good-the-bad-and-the-ugly-of-security-awareness/)
 
 van Rijmenam, M. (2022, August 24). *How Cybersecurity is Changing Technology Today*. The Digital Speaker. [https://www.thedigitalspeaker.com/cybersecurity-changing-technology/](https://www.thedigitalspeaker.com/cybersecurity-changing-technology/)

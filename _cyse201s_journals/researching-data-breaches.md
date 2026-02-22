@@ -1,6 +1,6 @@
 ---
 layout: journal
-title: "Researching Data Breaches Using [PrivacyRights.org](https://privacyrights.org)"
+title: "Researching Data Breaches Using PrivacyRights.org"
 date: 2024-09-16
 description: 
 ---
