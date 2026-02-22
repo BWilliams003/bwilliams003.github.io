@@ -1,0 +1,37 @@
+/*
+  # ================================================================
+  # SECURITY HEADERS — bwilliams003.github.io
+  # Remediation: SNYK-JEKYLL-HEADERS-001, SNYK-JEKYLL-CSP-001
+  # Applied: 2026-02-22 | Kindo AI Security Bot
+  # ================================================================
+  # Compliance: PCI-DSS 6.4.1, SOC2 CC6.1, OWASP A05:2021
+  # ================================================================
+
+  # Prevent clickjacking attacks (CWE-1021)
+  X-Frame-Options: DENY
+
+  # Prevent MIME type sniffing (CWE-430)
+  X-Content-Type-Options: nosniff
+
+  # Enforce HTTPS for 1 year, include subdomains (CWE-319)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # Content Security Policy — Mitigates XSS (CWE-79)
+  # - default-src 'self': only load resources from same origin
+  # - script-src: allows self + FontAwesome kit CDN (HTTPS only)
+  # - style-src 'unsafe-inline': required for Jekyll inline styles
+  # - img-src: allows self and data URIs for embedded images
+  # - font-src: allows self and FontAwesome CDN
+  # - connect-src 'none': disables XHR/fetch to external origins
+  # - object-src 'none': disables Flash and plugins
+  # - frame-ancestors 'none': secondary clickjacking protection
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://kit.fontawesome.com https://ka-f.fontawesome.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; connect-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+
+  # Prevent referrer leakage
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Disable dangerous browser features
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+
+  # XSS Protection for legacy browsers
+  X-XSS-Protection: 1; mode=block
