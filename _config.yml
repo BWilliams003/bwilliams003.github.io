@@ -50,8 +50,15 @@ tags:  post jekyll styleguide ipsum
 twitter-widget: false # true,false                  # Used to show your twitter timeline on blog home page
 
 comments: false                                     # Used to enable comments on blog posts
-gitalk_client_id:             
-gitalk_client_secret:    
+
+# [SECURITY] IMPORTANT: gitalk OAuth credentials MUST NOT be stored in this file.
+# This is a public repository. OAuth credentials (client_id, client_secret) must
+# be stored as GitHub Actions Secrets or environment variables only.
+# Ref: SNYK-HTML-HTTPONLY | CWE-614 | OWASP A02:2021 - Cryptographic Failures
+# To enable gitalk comments securely:
+#   1. Store credentials in GitHub Actions Secrets
+#   2. Use a backend proxy to handle OAuth flow
+#   3. Never commit secrets to version control
 gitalk_repo:
 gitalk_owner: 
 gitalk_admin: 
@@ -143,8 +150,5 @@ norton-safeweb:                                   # <meta name="norton-safeweb-s
 detectphone: yes                                  # yes or no. Disable automatic detection and formatting of possible phone numbers 
 x-dns-prefetch-control: on                        # on or off. Completely opt out of DNS prefetching by setting to "off"
 fbappid:                                          # Facebook OpenGraph 
-
-
-
 
 pgp-key: ""
