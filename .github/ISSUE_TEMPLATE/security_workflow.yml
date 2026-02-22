@@ -1,0 +1,92 @@
+name: Security Scan (Snyk)
+
+# [SECURITY] Automated vulnerability scanning on every PR and push to main
+# Remediates: SNYK-YAML-IAC-PERMISSIVE-STATUS
+# OWASP Reference: A05:2021 - Security Misconfiguration, A06:2021 - Vulnerable Components
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run weekly security scans every Monday at 08:00 UTC
+    - cron: '0 8 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  sca-ruby:
+    name: "SCA: Ruby Gem Vulnerability Scan"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Install and run bundler-audit
+        run: |
+          gem install bundler-audit
+          bundle-audit update
+          bundle-audit check
+
+  sast-semgrep:
+    name: "SAST: Semgrep Static Analysis"
+    runs-on: ubuntu-latest
+    container:
+      image: returntocorp/semgrep
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Semgrep SAST scan
+        run: |
+          semgrep scan \
+            --config=auto \
+            --config=p/owasp-top-ten \
+            --config=p/secrets \
+            --sarif \
+            --output=semgrep-results.sarif \
+            --severity=WARNING \
+            . || true
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep-results.sarif
+          category: semgrep-sast
+
+  secrets-detection:
+    name: "Secrets: Detect Hardcoded Credentials"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  security-config-audit:
+    name: "IaC: Security Configuration Audit"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit _config.yml for security misconfigurations
+        run: |
+          echo "=== Security Configuration Audit ==="
+          ISSUES=0
+          if grep -E "client_id: .+" _config.yml 2>/dev/null; then
+            echo "FAIL: gitalk_client_id is populated - REMOVE from public repo!"
+            ISSUES=$((ISSUES+1))
+          fi
+          if grep -E "client_secret: .+" _config.yml 2>/dev/null; then
+            echo "FAIL: gitalk_client_secret is populated - REMOVE from public repo!"
+            ISSUES=$((ISSUES+1))
+          fi
+          if [ $ISSUES -gt 0 ]; then
+            echo "SECURITY AUDIT FAILED: $ISSUES issue(s) found"
+            exit 1
+          else
+            echo "PASS: No credential exposure issues found"
+          fi
