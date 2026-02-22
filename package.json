@@ -2,20 +2,37 @@
   "name": "dumbarton",
   "version": "1.0.0",
   "description": "A Jekyll theme for academics",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
-    "test": "test"
+    "test": "npm run audit && npm run lint",
+    "audit": "npm audit --audit-level=high",
+    "lint": "echo 'No JS linting configured yet'",
+    "security-check": "npm audit --json > audit-report.json && cat audit-report.json"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "^0.39.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tcbutler320/Dumbarton.git"
   },
   "keywords": [
-    "jekyll"
+    "jekyll",
+    "security"
   ],
   "author": "Tyler Butler",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tcbutler320/Dumbarton/issues"
   },
-  "homepage": "https://github.com/tcbutler320/Dumbarton#readme"
+  "homepage": "https://github.com/tcbutler320/Dumbarton#readme",
+  "_security": {
+    "remediatedBy": "Kindo AI Security Bot",
+    "scanDate": "2026-02-22T11:46:00Z",
+    "findings": ["SCA-NPM-AUDIT-001"],
+    "owasp": "A06:2021-Vulnerable and Outdated Components"
+  }
 }
