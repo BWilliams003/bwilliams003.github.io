@@ -49,9 +49,22 @@ ui_theme: abyss                                 # Create your own theme by setti
 tags:  post jekyll styleguide ipsum
 twitter-widget: false # true,false                  # Used to show your twitter timeline on blog home page
 
-comments: false                                     # Used to enable comments on blog posts
-gitalk_client_id:             
-gitalk_client_secret:    
+# -------------------------------------------------------
+# SECURITY: Comment system credentials
+# -------------------------------------------------------
+# NEVER store OAuth credentials in this config file.
+# This is a PUBLIC repository — any values here are exposed.
+# 
+# For gitalk comments, use GitHub Secrets:
+#   1. Go to Settings → Secrets and variables → Actions
+#   2. Add GITALK_CLIENT_ID and GITALK_CLIENT_SECRET as secrets
+#   3. Reference in Jekyll build via environment variables
+#
+# See SECURITY.md for credential management policy.
+# -------------------------------------------------------
+comments: false                                     # Set to true only when secrets are properly configured
+# gitalk_client_id:    → USE GITHUB SECRET: GITALK_CLIENT_ID
+# gitalk_client_secret: → USE GITHUB SECRET: GITALK_CLIENT_SECRET
 gitalk_repo:
 gitalk_owner: 
 gitalk_admin: 
@@ -128,7 +141,10 @@ exclude:
 # ------------CDN SETTINGS---------------#
 #-------------Used to generate icons-----#
 #========================================#
-font_awesome_id: 32a2b2a489                       # Register for free at https://fontawesome.com/ to get your id
+# SECURITY NOTE: Font Awesome kit ID is a low-sensitivity identifier (not a secret key).
+# To prevent unauthorized kit usage, restrict domains in your Font Awesome dashboard:
+#   https://fontawesome.com/kits → Kit Settings → Allowed Domains → Add your GitHub Pages URL
+font_awesome_id: 32a2b2a489
 
 
 # =======================================#        # For more information about these settings, visit https://htmlhead.dev #
