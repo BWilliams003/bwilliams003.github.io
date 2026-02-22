@@ -1,0 +1,61 @@
+# ============================================================
+# Dependabot Configuration
+# ============================================================
+# Automates dependency version monitoring and PR creation
+# when new secure versions of dependencies are available.
+#
+# CWE-1104: Use of Unmaintained Third Party Components
+# OWASP A06:2021 — Vulnerable and Outdated Components
+# NIST CSF DE.CM — Continuous Security Monitoring
+# ============================================================
+
+version: 2
+
+updates:
+  # Ruby/Jekyll gems (Gemfile)
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "security"
+      - "dependencies"
+    commit-message:
+      prefix: "fix(deps)"
+      include: "scope"
+
+  # npm packages (package.json)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "security"
+      - "dependencies"
+    commit-message:
+      prefix: "fix(deps)"
+      include: "scope"
+
+  # GitHub Actions workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    labels:
+      - "security"
+      - "ci/cd"
+    commit-message:
+      prefix: "fix(ci)"
+      include: "scope"
