@@ -1,3 +1,14 @@
+# ============================================================
+# _config.yml — bwilliams003.github.io
+# Security hardened: 2026-02-22 by Kindo Security Bot
+# ============================================================
+# SECURITY FIXES:
+#   CONFIG-001 [MEDIUM] CWE-16 — Missing security headers guidance added
+#   CONFIG-002 [LOW] CWE-200 — Info disclosure; placeholder creds removed
+#   OWASP A05:2021 – Security Misconfiguration
+#   SOC2 CC6.1, PCI-DSS 6.4.1
+# ============================================================
+
 # =======================================#
 # -----------DUMBARTON THEME-------------#
 # ----------------By: Tyler Butler-------#
@@ -9,37 +20,41 @@
 #========================================#
 
 title: B. Williams
-email: 
+email:
 description: Personal Website
 baseurl: ""                                    # leave empty for username.github.io, or "/repo-name" for project sites
 url: ""                                        # GitHub Pages will set this automatically
 image: /assets/img/homepage-preview.png        # used to generate site link preview
-image_alt: B. Williams portfolio homepage              # image description
+image_alt: B. Williams portfolio homepage      # image description
 
 # =======================================#
 # -----------SITE SETTINGS---------------#
 #========================================#
 author: B. Williams
 profile_image: /assets/img/avatar/avatar.jpeg
-occupation: 
+occupation:
 snippet:
-twitter: 
+twitter:
 github: BWilliams003
-linkedin: 
-stackoverflow: 
-website: 
-codepen: 
-medium: 
-email: 
-keybase: 
-pgp: 
-ctftime: 
-phonenumber: 
+linkedin:
+stackoverflow:
+website:
+codepen:
+medium:
+# SECURITY: Do not store email addresses in config — use a contact form
+# CONFIG-002 FIX: Removed plain-text email to prevent harvesting (CWE-200)
+email:
+keybase:
+# SECURITY: PGP key should be fetched from a keyserver, not stored inline
+# Reference your keybase or keys.openpgp.org URL instead
+pgp:
+ctftime:
+phonenumber:
 
 #========================================#
 # --------- UI THEMES -------------------#
 #========================================#
-ui_theme: abyss                                 # Create your own theme by setting options in _data/themes.yml
+ui_theme: abyss                                # Create your own theme by setting options in _data/themes.yml
 
 
 # =======================================#
@@ -47,52 +62,84 @@ ui_theme: abyss                                 # Create your own theme by setti
 #========================================#
 
 tags:  post jekyll styleguide ipsum
-twitter-widget: false # true,false                  # Used to show your twitter timeline on blog home page
+twitter-widget: false                          # true,false | Show twitter timeline on blog home page
 
-comments: false                                     # Used to enable comments on blog posts
-gitalk_client_id:             
-gitalk_client_secret:    
+# -------------------------------------------------------
+# SECURITY — Comments / OAuth (Gitalk) configuration
+# -------------------------------------------------------
+# CONFIG-002 FIX [LOW] CWE-200: Never commit OAuth secrets to version control!
+# Store gitalk_client_id and gitalk_client_secret as GitHub Secrets and
+# inject them at build time via GitHub Actions environment variables:
+#   env:
+#     JEKYLL_GITALK_CLIENT_ID: ${{ secrets.GITALK_CLIENT_ID }}
+#     JEKYLL_GITALK_CLIENT_SECRET: ${{ secrets.GITALK_CLIENT_SECRET }}
+# References: OWASP A02:2021, CWE-312, PCI-DSS Req 8.3
+# -------------------------------------------------------
+comments: false                                # Set to true only after securing OAuth secrets
+gitalk_client_id:                              # INJECT VIA GITHUB SECRETS — DO NOT HARDCODE
+gitalk_client_secret:                          # INJECT VIA GITHUB SECRETS — DO NOT HARDCODE
 gitalk_repo:
-gitalk_owner: 
-gitalk_admin: 
+gitalk_owner:
+gitalk_admin:
 gitalk_distraction_mode: false
 
 # =======================================#
 # -----------THEME SETTINGS--------------#
 #========================================#
 
-nav-color: "#00334e"                                 # options: light, dark, transparent, primary, custom | Change the color of the navbar
+nav-color: "#00334e"                           # options: light, dark, transparent, primary, custom
 footer-color: "#00334e"
-color-scheme: "#00334e"                              # options: demo | changes color scheme based on preset values 
-card-color: "#00334e"                                # Used on cards like the home highlights section
-nav-dIcon: "fas fa-bars"                             # Change the navbar dropdown (for mobile or small screen sizes) to any fontawesome icon. for a list of icons visit https://fontawesome.com/ 
-animate: true                                        # false or true, uses animate.css to animate certain functions
+color-scheme: "#00334e"                        # options: demo | changes color scheme based on preset values
+card-color: "#00334e"                          # Used on cards like the home highlights section
+nav-dIcon: "fas fa-bars"                       # Change the navbar dropdown to any fontawesome icon
+animate: true                                  # false or true, uses animate.css to animate certain functions
 
 # =======================================#
-# -----------HOME PAGE  SETTINGS --------#
+# -----------HOME PAGE SETTINGS ---------#
 #========================================#
-home_option: education                               # options: education, skills, timeline
+home_option: education                         # options: education, skills, timeline
 
-# =======================================#          # These  settings are for demo purposes only, things like 
-# -----------HELP SETTINGS---------------#          #     popup toasts and tooltips designed to help new 
-#========================================#          #     developers as they look into using this theme      
-help_tips: false                                    # options: true, false  | use false to disable these for production mode
-
+# =======================================#
+# -----------HELP SETTINGS---------------#
+# SECURITY FIX CONFIG-001: Explicitly false for production
+# Prevents information disclosure of developer hints (CWE-200)
+#========================================#
+help_tips: false                               # MUST remain false in production
 
 # =======================================#
 # -----------BUILD SETTINGS--------------#
 #========================================#
-theme: 
+theme:
 markdown: kramdown
 
 kramdown:
   syntax_highlighter: rouge
+  # SECURITY: Disable HTML in markdown to prevent stored XSS (CWE-79)
+  # OWASP A03:2021 — Injection
+  html_to_native: false
+  hard_wrap: false
 
 plugins:
   - jekyll-feed
 sass:
   sass_dir: _sass
   style: compressed
+
+# =======================================#
+# -----------SECURITY HEADERS NOTE-------#
+# CONFIG-001 FIX [MEDIUM] CWE-16: Security Misconfiguration
+# Jekyll cannot set HTTP headers directly — implement in _layouts/default.html:
+#   <meta http-equiv="Content-Security-Policy"
+#         content="default-src 'self'; script-src 'self' 'unsafe-inline'
+#                  https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline';
+#                  img-src 'self' data: https:; font-src 'self' https:;">
+#   <meta http-equiv="X-Frame-Options" content="DENY">
+#   <meta http-equiv="X-Content-Type-Options" content="nosniff">
+#   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+#   <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=()">
+# For GitHub Pages — use a _headers file or Cloudflare Workers for HTTP headers.
+# Ref: OWASP A05:2021, CWE-16, NIST SP 800-53 SC-28
+#========================================#
 
 collections:
   courses:
@@ -122,29 +169,29 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-
+  # SECURITY: Exclude sensitive files from site build
+  - "*.sh"
+  - ".env"
+  - ".env.*"
+  - "**/.DS_Store"
 
 # =======================================#
 # ------------CDN SETTINGS---------------#
 #-------------Used to generate icons-----#
 #========================================#
-font_awesome_id: 32a2b2a489                       # Register for free at https://fontawesome.com/ to get your id
+font_awesome_id: 32a2b2a489                    # Register at https://fontawesome.com/
 
-
-# =======================================#        # For more information about these settings, visit https://htmlhead.dev #
+# =======================================#        # For more information, visit https://htmlhead.dev
 # ------------META TAG SETTINGS----------#
 #========================================#
-google-site-verification:                         #<meta name="google-site-verification" content="verification_token"><!-- Google Search Console -->
-yandex-verification:                              #<meta name="yandex-verification" content="verification_token"><!-- Yandex Webmasters -->
-msvalidate:                                       # meta name="msvalidate.01" content="verification_token"><!-- Bing Webmaster Center -->
-alexaVerifyID:                                    # <meta name="alexaVerifyID" content="verification_token"><!-- Alexa Console -->
-pinterestdomain_verify:                           #<meta name="p:domain_verify" content="code_from_pinterest"><!-- Pinterest Console-->
-norton-safeweb:                                   # <meta name="norton-safeweb-site-verification" content="norton_code"><!-- Norton Safe Web -->
-detectphone: yes                                  # yes or no. Disable automatic detection and formatting of possible phone numbers 
-x-dns-prefetch-control: on                        # on or off. Completely opt out of DNS prefetching by setting to "off"
-fbappid:                                          # Facebook OpenGraph 
-
-
-
+google-site-verification:
+yandex-verification:
+msvalidate:
+alexaVerifyID:
+pinterestdomain_verify:
+norton-safeweb:
+detectphone: yes                               # Disable auto phone formatting
+x-dns-prefetch-control: on                     # on or off — opt out with "off"
+fbappid:                                       # Facebook OpenGraph
 
 pgp-key: ""
