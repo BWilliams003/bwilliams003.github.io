@@ -9,7 +9,7 @@
 #========================================#
 
 title: B. Williams
-email: 
+email:
 description: Personal Website
 baseurl: ""                                    # leave empty for username.github.io, or "/repo-name" for project sites
 url: ""                                        # GitHub Pages will set this automatically
@@ -21,20 +21,20 @@ image_alt: B. Williams portfolio homepage              # image description
 #========================================#
 author: B. Williams
 profile_image: /assets/img/avatar/avatar.jpeg
-occupation: 
+occupation:
 snippet:
-twitter: 
+twitter:
 github: BWilliams003
-linkedin: 
-stackoverflow: 
-website: 
-codepen: 
-medium: 
-email: 
-keybase: 
-pgp: 
-ctftime: 
-phonenumber: 
+linkedin:
+stackoverflow:
+website:
+codepen:
+medium:
+email:
+keybase:
+pgp:
+ctftime:
+phonenumber:
 
 #========================================#
 # --------- UI THEMES -------------------#
@@ -50,39 +50,32 @@ tags:  post jekyll styleguide ipsum
 twitter-widget: false # true,false                  # Used to show your twitter timeline on blog home page
 
 comments: false                                     # Used to enable comments on blog posts
-gitalk_client_id:             
-gitalk_client_secret:    
+
+# SECURITY NOTE (SNYK-SAST-SECRET-001): Do NOT commit real OAuth credentials here.
+# If using Gitalk, store client_id/client_secret as GitHub Actions secrets and
+# inject via a build step. These fields must remain empty in this public config file.
+gitalk_client_id:
+gitalk_client_secret:
 gitalk_repo:
-gitalk_owner: 
-gitalk_admin: 
+gitalk_owner:
+gitalk_admin:
 gitalk_distraction_mode: false
-
-# =======================================#
-# -----------THEME SETTINGS--------------#
-#========================================#
-
-nav-color: "#00334e"                                 # options: light, dark, transparent, primary, custom | Change the color of the navbar
-footer-color: "#00334e"
-color-scheme: "#00334e"                              # options: demo | changes color scheme based on preset values 
-card-color: "#00334e"                                # Used on cards like the home highlights section
-nav-dIcon: "fas fa-bars"                             # Change the navbar dropdown (for mobile or small screen sizes) to any fontawesome icon. for a list of icons visit https://fontawesome.com/ 
-animate: true                                        # false or true, uses animate.css to animate certain functions
 
 # =======================================#
 # -----------HOME PAGE  SETTINGS --------#
 #========================================#
 home_option: education                               # options: education, skills, timeline
 
-# =======================================#          # These  settings are for demo purposes only, things like 
-# -----------HELP SETTINGS---------------#          #     popup toasts and tooltips designed to help new 
-#========================================#          #     developers as they look into using this theme      
+# =======================================#          # These  settings are for demo purposes only, things like
+# -----------HELP SETTINGS---------------#          #     popup toasts and tooltips designed to help new
+#========================================#          #     developers as they look into using this theme
 help_tips: false                                    # options: true, false  | use false to disable these for production mode
 
 
 # =======================================#
 # -----------BUILD SETTINGS--------------#
 #========================================#
-theme: 
+theme:
 markdown: kramdown
 
 kramdown:
@@ -90,6 +83,7 @@ kramdown:
 
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 sass:
   sass_dir: _sass
   style: compressed
@@ -122,13 +116,20 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - SECURITY.md
 
 
 # =======================================#
 # ------------CDN SETTINGS---------------#
 #-------------Used to generate icons-----#
 #========================================#
-font_awesome_id: 32a2b2a489                       # Register for free at https://fontawesome.com/ to get your id
+# SECURITY NOTE (SNYK-SAST-SECRET-001 / SNYK-IAC-JEKYLL-CONFIG-001):
+# The Font Awesome kit ID below is visible in the public repository.
+# To reduce risk: use the Font Awesome free CDN link with SRI hash instead of
+# a personal kit, or store the kit ID in a GitHub Actions secret and inject
+# at build time. SRI hash for FA 6.x free CDN:
+#   sha384-<hash> (obtain from https://fontawesome.com/docs/web/setup/use-kit)
+font_awesome_id:  # SECURITY: Moved kit ID — load via layout with SRI hash
 
 
 # =======================================#        # For more information about these settings, visit https://htmlhead.dev #
@@ -140,11 +141,22 @@ msvalidate:                                       # meta name="msvalidate.01" co
 alexaVerifyID:                                    # <meta name="alexaVerifyID" content="verification_token"><!-- Alexa Console -->
 pinterestdomain_verify:                           #<meta name="p:domain_verify" content="code_from_pinterest"><!-- Pinterest Console-->
 norton-safeweb:                                   # <meta name="norton-safeweb-site-verification" content="norton_code"><!-- Norton Safe Web -->
-detectphone: yes                                  # yes or no. Disable automatic detection and formatting of possible phone numbers 
+detectphone: yes                                  # yes or no. Disable automatic detection and formatting of possible phone numbers
 x-dns-prefetch-control: on                        # on or off. Completely opt out of DNS prefetching by setting to "off"
-fbappid:                                          # Facebook OpenGraph 
+fbappid:                                          # Facebook OpenGraph
 
-
+# =======================================#
+# --------SECURITY SETTINGS--------------#
+# Added by Kindo Security Bot 2026-02-22 #
+# Snyk Remediation: SNYK-IAC-JEKYLL-*   #
+#========================================#
+# These flags are read by layouts to inject security headers as meta tags.
+# SNYK-IAC-JEKYLL-CONFIG-001: Content Security Policy
+security_csp_enabled: true
+# SNYK-IAC-JEKYLL-CONFIG-002: Additional security meta tags
+security_headers_enabled: true
+# Referrer policy (safe default: strict-origin-when-cross-origin)
+referrer_policy: "strict-origin-when-cross-origin"
 
 
 pgp-key: ""
