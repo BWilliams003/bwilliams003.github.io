@@ -1,0 +1,25 @@
+# Security Policy for bwilliams003.github.io
+# Per RFC 9116 (https://www.rfc-editor.org/rfc/rfc9116)
+# Also accessible at: /.well-known/security.txt
+#
+# SECURITY FIX [LOW] VULN-MISSING-SECURITY-TXT [NEW in v11]:
+# Establishing a vulnerability disclosure channel per RFC 9116.
+# Without this file, security researchers have no standard way to report issues.
+# OWASP A05:2021 | SOC2 CC7.3
+
+Contact: https://github.com/BWilliams003/bwilliams003.github.io/security/advisories/new
+Contact: https://github.com/BWilliams003/bwilliams003.github.io/issues
+
+Preferred-Languages: en
+
+Scope: https://bwilliams003.github.io
+
+Policy: https://github.com/BWilliams003/bwilliams003.github.io/blob/main/SECURITY.md
+
+Encryption: none
+
+# This site is a static Jekyll-generated GitHub Pages portfolio.
+# There is no server-side code, no authentication, no user data stored.
+# Primary security concerns: CDN supply-chain, XSS via client-side JS, information disclosure.
+
+Expires: 2027-02-22T00:00:00.000Z
