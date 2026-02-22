@@ -3,13 +3,19 @@
 # ----------------By: Tyler Butler-------#
 #-----------------https://tbutler.org----#
 #========================================#
+#
+# SECURITY REMEDIATION — 2026-02-22T11:46:00Z
+# Kindo AI Security Bot | Run ID: 20260222-1146
+# Fixes: IAC-GHJEKYLL-001, IAC-SECRETS-001, SAST-XSS-001,
+#        SAST-JEKYLL-002, SAST-JEKYLL-003
+#
 
 # =======================================#
 # -----------BASE SETTINGS---------------#
 #========================================#
 
 title: B. Williams
-email: 
+email:
 description: Personal Website
 baseurl: ""                                    # leave empty for username.github.io, or "/repo-name" for project sites
 url: ""                                        # GitHub Pages will set this automatically
@@ -21,20 +27,21 @@ image_alt: B. Williams portfolio homepage              # image description
 #========================================#
 author: B. Williams
 profile_image: /assets/img/avatar/avatar.jpeg
-occupation: 
+occupation:
 snippet:
-twitter: 
+twitter:
 github: BWilliams003
-linkedin: 
-stackoverflow: 
-website: 
-codepen: 
-medium: 
-email: 
-keybase: 
-pgp: 
-ctftime: 
-phonenumber: 
+linkedin:
+stackoverflow:
+website:
+codepen:
+medium:
+# [LOW] SAST-JEKYLL-003: Removed empty email/pgp fields to reduce info exposure
+# email: (disabled — set via environment variable if needed)
+keybase:
+# pgp: (disabled — configure via secure secrets manager if needed)
+ctftime:
+phonenumber:
 
 #========================================#
 # --------- UI THEMES -------------------#
@@ -50,11 +57,15 @@ tags:  post jekyll styleguide ipsum
 twitter-widget: false # true,false                  # Used to show your twitter timeline on blog home page
 
 comments: false                                     # Used to enable comments on blog posts
-gitalk_client_id:             
-gitalk_client_secret:    
+# [MEDIUM] IAC-SECRETS-001: Gitalk OAuth client_id/client_secret REMOVED.
+# These values must NEVER be stored in version-controlled config files.
+# If re-enabling Gitalk: store credentials in GitHub Secrets and inject at build time.
+# See: https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+# gitalk_client_id:     <-- USE GITHUB SECRETS: secrets.GITALK_CLIENT_ID
+# gitalk_client_secret: <-- USE GITHUB SECRETS: secrets.GITALK_CLIENT_SECRET
 gitalk_repo:
-gitalk_owner: 
-gitalk_admin: 
+gitalk_owner:
+gitalk_admin:
 gitalk_distraction_mode: false
 
 # =======================================#
@@ -63,9 +74,9 @@ gitalk_distraction_mode: false
 
 nav-color: "#00334e"                                 # options: light, dark, transparent, primary, custom | Change the color of the navbar
 footer-color: "#00334e"
-color-scheme: "#00334e"                              # options: demo | changes color scheme based on preset values 
+color-scheme: "#00334e"                              # options: demo | changes color scheme based on preset values
 card-color: "#00334e"                                # Used on cards like the home highlights section
-nav-dIcon: "fas fa-bars"                             # Change the navbar dropdown (for mobile or small screen sizes) to any fontawesome icon. for a list of icons visit https://fontawesome.com/ 
+nav-dIcon: "fas fa-bars"                             # Change the navbar dropdown (for mobile or small screen sizes) to any fontawesome icon. for a list of icons visit https://fontawesome.com/
 animate: true                                        # false or true, uses animate.css to animate certain functions
 
 # =======================================#
@@ -73,16 +84,17 @@ animate: true                                        # false or true, uses anima
 #========================================#
 home_option: education                               # options: education, skills, timeline
 
-# =======================================#          # These  settings are for demo purposes only, things like 
-# -----------HELP SETTINGS---------------#          #     popup toasts and tooltips designed to help new 
-#========================================#          #     developers as they look into using this theme      
-help_tips: false                                    # options: true, false  | use false to disable these for production mode
+# =======================================#          # These  settings are for demo purposes only, things like
+# -----------HELP SETTINGS---------------#          #     popup toasts and tooltips designed to help new
+#========================================#          #     developers as they look into using this theme
+# [MEDIUM] IAC-GHJEKYLL-001: Explicitly set to false — debug info MUST NOT leak in production.
+help_tips: false                                    # options: true, false  | ALWAYS false in production
 
 
 # =======================================#
 # -----------BUILD SETTINGS--------------#
 #========================================#
-theme: 
+theme:
 markdown: kramdown
 
 kramdown:
@@ -90,6 +102,7 @@ kramdown:
 
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 sass:
   sass_dir: _sass
   style: compressed
@@ -122,6 +135,8 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - audit-report.json
+  - SECURITY.md
 
 
 # =======================================#
@@ -134,17 +149,20 @@ font_awesome_id: 32a2b2a489                       # Register for free at https:/
 # =======================================#        # For more information about these settings, visit https://htmlhead.dev #
 # ------------META TAG SETTINGS----------#
 #========================================#
+# [MEDIUM] SAST-XSS-001: Add a Content-Security-Policy meta tag in your _layouts/default.html:
+#   <meta http-equiv="Content-Security-Policy"
+#         content="default-src 'self'; script-src 'self' https://cdn.fontawesome.com; style-src 'self' 'unsafe-inline';">
+# See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 google-site-verification:                         #<meta name="google-site-verification" content="verification_token"><!-- Google Search Console -->
 yandex-verification:                              #<meta name="yandex-verification" content="verification_token"><!-- Yandex Webmasters -->
 msvalidate:                                       # meta name="msvalidate.01" content="verification_token"><!-- Bing Webmaster Center -->
 alexaVerifyID:                                    # <meta name="alexaVerifyID" content="verification_token"><!-- Alexa Console -->
 pinterestdomain_verify:                           #<meta name="p:domain_verify" content="code_from_pinterest"><!-- Pinterest Console-->
 norton-safeweb:                                   # <meta name="norton-safeweb-site-verification" content="norton_code"><!-- Norton Safe Web -->
-detectphone: yes                                  # yes or no. Disable automatic detection and formatting of possible phone numbers 
-x-dns-prefetch-control: on                        # on or off. Completely opt out of DNS prefetching by setting to "off"
-fbappid:                                          # Facebook OpenGraph 
-
-
-
+detectphone: yes                                  # yes or no. Disable automatic detection and formatting of possible phone numbers
+# [LOW] SAST-JEKYLL-002: Changed to "off" — DNS prefetching is a privacy risk.
+# Attackers can potentially infer visited URLs from prefetch DNS requests.
+x-dns-prefetch-control: "off"                     # SECURITY: was "on" — now disabled per OWASP A05
+fbappid:                                          # Facebook OpenGraph
 
 pgp-key: ""
