@@ -1,0 +1,34 @@
+name: Update Medium Feed Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-medium-feed:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch and write Medium posts
+        run: |
+          python scripts/update_medium_feed.py \
+            --output _data/medium_posts.json \
+            --max-posts 25
+
+      - name: Commit updated feed data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update medium feed data"
+          file_pattern: _data/medium_posts.json

@@ -1,0 +1,45 @@
+---
+layout: page
+permalink: /reflection.html
+title: "Reflection"
+description: An overview of my portfolio highlighting my top skills.
+last-updated: 2026-03-09
+---
+
+## Reflective Essay
+
+As a graduating senior at Old Dominion University (ODU), I have spent a lot of time reflecting on my time in university. Throughout my courses at ODU, Georgia Institute of Technology (Georgia Tech), and the Technical Institute of Denmark (DTU), I have been exposed to a wide variety of technical and non-technical concepts. During my time at ODU, I took classes in cybersecurity, political science, and interdisciplinary classes like Introduction to Criminal Justice and Interdisciplinary Theories and Concepts. I’ve also spent the past two and a half years working at Kindo, a startup focusing on enterprise security solutions for artificial intelligence (AI) in technical operations, first as a Customer Service Representative (CSR), then Cybersecurity Intern, and now a Cybersecurity Engineer. These various roles laid the foundation for my knowledge of AI, which was strengthened by my Cryptography for Cybersecurity course. Through Kindo and ODU I have had many opportunities to practice and improve my public speaking skills through in-class presentations and Acting I, which helped strengthen my physical presence while speaking. Finally, throughout the majority of my courses I have written papers on a vast array of topics, some of which are featured throughout my portfolio. All of these skills, plus many others and countless experiences, have shaped my time in university and helped me become who I am today.
+
+### Artificial Intelligence
+
+During my time in university, AI has grown from a very niche field, primarily focused on machine learning and natural language processing, into a widely commercialized field with applications ranging across many fields, including, of course, cybersecurity. My first introduction to AI began the summer after my freshman year at Georgia Tech, when I interned at Kindo as a CSR. That summer, I quickly learned how to optimize responses from AI models, the strengths and weaknesses different models had, and the very beginnings of agentic AI, where an AI model follows specific steps to complete a task autonomously. Perhaps most importantly, I also learned how to distill all of these topics in a way a non-technical person could grasp and act on while interacting with early users of Kindo. 
+
+The next summer, after a semester each at DTU and ODU, I returned to Kindo, this time as a Cybersecurity Intern. This time, my focus was more on implementing early tool use programs (essentially structured API calls) for AI models to act more autonomously for cybersecurity tasks. I also began writing blogs, which are featured in my portfolio. The first three, which include *WhiteRabbitNeo AI: Follow the white rabbit to CTF success*, were released leading up to DefCon 32, my first cybersecurity conference. This series focused on ways you can use AI to help with developing cybersecurity skills, specifically in the context of Capture the Flag (CTF) competitions. 
+
+I continued interning at Kindo the following school year while also attending ODU. During that time, I had the opportunity to delve further into AI concepts, some of which culminated into the blog *Unveiling the Future of AI: A Masterclass on Retrieval Augmented Generation (RAG)*, which is to-date my favorite blog I’ve written. This one was a deep dive on how different algorithm techniques work to supplement AI models with context beyond what was included in their training data. 
+
+A few months after that blog was published, the Model Context Protocol (MCP) emerged as a new development in the tool use programs and RAG algorithms I’ve worked with over the years. In Cryptography for Cybersecurity, I wrote a term paper on the MCP specification, *Security Risks and Best Practices for Implementing the Model Context Protocol*, which discussed both the specification and specific cyberattacks that target it. All of these experiences have built off of each other, helping me develop an innate understanding of not just applications of AI, but how the models actually work.
+	
+### Public Speaking
+
+My work in AI has also directly contributed to opportunities to develop my public speaking skills. In the fall of 2024 I submitted my first call for papers (CFP), which is an application to speak at a conference. I was accepted on the rookie (first time speaker) track at Security BSides London, where I gave a talk on *Threat analysis in minutes and other AI superpowers*, inspired by my first blog series. BSides London was an amazing opportunity that provided me with a mentor who helped me to practice my talk, as well as an enthusiastic crowd who was receptive to hearing a first-time speaker present. 
+
+Motivated by this experience, I began applying to other conferences and giving other talks, including at BSides Charm 2025 in Baltimore, Maryland, where I gave a talk on *Supercharge Your Workflow: Using WhiteRabbitNeo for AI-Powered Analysis*. This talk built off the one I gave in London and emphasized the potential of AI as another “time” that learning may occur, similar to lectures, homework, and exams. 
+
+I also had the opportunity to develop and lead a workshop at RSA Conference 2025 as part of Kindo’s presence at the conference, which was a *Hands-on activity: AI-Assisted cyber incident response playbook generation*, and lead participants through creating an AI runbook to respond to a specific cybersecurity incident. 
+
+Not to be remiss, while my artifacts focus on activities from my work at Kindo, numerous in-class presentations and oral exams at Georgia Tech, DTU, and ODU also helped me gain confidence and develop my public speaking skills. In particular, my oral exams at DTU helped me practice talking comfortably about technical and security concepts. My Acting I class at ODU also helped me to develop my stage presence, culminating in my delivery of a monologue from Frankenstein. All of these experiences have helped me gain confidence in my public speaking and also deepen my understanding of the concepts I’ve spoken about, as it has pushed me to understand them well enough to speak comfortably and confidently about them.
+
+### Writing
+	
+Throughout my time in university, almost every course has required some form of academic writing. This has provided me with ample opportunity to develop my academic and technical writing and research skills while learning about a wide variety of topics. The freedom granted in my courses has allowed me to explore topics I normally would not have the opportunity to, particularly in my courses outside of cybersecurity. 
+
+In Cults and Conspiracies, which I took for my information literacy general education requirement, I wrote a paper on the *Motivation behind the ‘Senatus Consultum de Bacchanalibus,’* which focused on the Bacchanalia Affair, a legal proceeding between the matriarchal Bacchanalia mystery religion of Ancient Rome and the patriarchal Roman Senate, who sought to censure the religious group. This paper led me down a rabbit hole of ancient Roman political and religious proceedings, helping me develop my research skills on something completely out of my normal realm of study. 
+
+ In Introduction to Criminology, I wrote about *The Motivations and Developmental Models of Serial Killers*, which allowed me to study the psychological factors present in children who grew up to be serial killers from firsthand accounts and medical records.
+
+Finally, in International Law, I drafted a *Legal Memo: In Defense of Alba in Alba v. Benir*, a simulated legal dispute that was then argued in class. This memo helped me to apply different international law cases studied in class to prove an argument in a legal setting. While I’ve written many papers throughout my academic career, these are three of my favorites as they demonstrate the breadth and depth of my writing skills outside of technical writing and reports.
+
+### Conclusion
+
+Interdisciplinary methods and theories have played an important role in my understanding throughout my time in university. They have taught me that no skill is completely isolated, rather they all build off of each other to create a stronger display of knowledge and capability. Throughout my coursework, I learned how to engage with primary and secondary sources, conduct research without inserting my own bias, and write in a professional and academic manner. Courses like Interdisciplinary Theories and Concepts helped me become comfortable engaging with non-technical sources, which is important in cybersecurity as the field requires you to be familiar with concepts connected to whatever industry you are attempting to secure. This demonstrates the importance in being an interdisciplinary thinker in cybersecurity, without understanding other disciplines you risk losing context in your attempts to establish and maintain secure practices at work.

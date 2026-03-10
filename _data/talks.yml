@@ -1,8 +1,18 @@
+- Conference: Old Dominion University CyberOps 2025
+  Title: "Beyond the Classroom: AI-Assisted Learning for Cybersecurity Skill Development"
+  Location: Norfolk, VA
+  date: 2026-02-28
+  first: true
+  slides: /assets/pdf/CyberOps-2025-Slides.pdf
+  slides_thumbnail: /assets/img/cyberops-2025-slides-thumbnail.png
+  description: >
+    This talk explores how open-source, uncensored AI models, specifically those trained on red team and offensive cybersecurity data, can serve as accessible learning companions for aspiring security professionals. We'll examine why the choice of AI model matters in cybersecurity contexts, discussing the difference between closed-source and open-source solutions, as well as censored and uncensored models, while emphasizing the importance of staying current with evolving attack and defense tools. <br><br> The session will showcase AI as an innovative teaching methodology, demonstrating concrete techniques for developing cybersecurity expertise through AI-assisted learning. Through walk-throughs of CTF challenge solves, attendees will see how AI can function as a "pair hacking" partner, helping students build practical skills in capture-the-flag competitions. Attendees will leave with concrete steps to take to incorporate AI into their cybersecurity journey.
+
 - Conference: RSA Conference 2025 | Adversary Village Sandbox
   Title: "Hands-on activity: AI-Assisted cyber incident response playbook generation"
   Location: San Francisco, CA
   date: 2025-04-29
-  first: true
+  first: false
   slides: /assets/pdf/RSA-2025-Slides.pdf
   slides_thumbnail: /assets/img/rsa-2025-slides-thumbnail.png
   description: >
@@ -16,7 +26,7 @@
   description: >
     I participated in a fireside chat with the Computer Science Society Club at Texas A&M University-Corpus Christi where we discussed the use of AI in the workplace and the future of AI.
 
-- Conference: Security BSides Charm 2025
+- Conference: BSides Charm 2025
   Title: "Supercharge Your Workflow: Using WhiteRabbitNeo for AI-Powered Analysis"
   Location: Towson, MD
   date: 2025-04-13
