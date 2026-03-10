@@ -21,19 +21,19 @@ In addition to allowing me to showcase these skills, as a commuter student who t
 Below are links to my LeADERS-affiliated courses, which can also be accessed from the homepage or the course list in the navigation bar:
 
 <div class="list-group">
-  <a href="/courses/gt-2803.html" class="list-group-item list-group-item-action">
+  <a href="/courses/gt-2803.html" class="list-group-item list-group-item-action" style="text-decoration: none;">
     <h5 class="mb-1">GT 2803: Global Leadership</h5>
   </a>
-  <a href="/courses/cyse-368.html" class="list-group-item list-group-item-action">
+  <a href="/courses/cyse-368.html" class="list-group-item list-group-item-action" style="text-decoration: none;">
     <h5 class="mb-1">CYSE 368: Cybersecurity Internship</h5>
   </a>
-  <a href="/courses/ids-300w.html" class="list-group-item list-group-item-action">
+  <a href="/courses/ids-300w.html" class="list-group-item list-group-item-action" style="text-decoration: none;">
     <h5 class="mb-1">IDS 300W: Interdisciplinary Theories and Concepts</h5>
   </a>
-  <a href="/courses/pols-309.html" class="list-group-item list-group-item-action">
+  <a href="/courses/pols-309.html" class="list-group-item list-group-item-action" style="text-decoration: none;">
     <h5 class="mb-1">POLS 309: Race, Culture and Public Policy</h5>
   </a>
-  <a href="/courses/pols-418.html" class="list-group-item list-group-item-action">
+  <a href="/courses/pols-418.html" class="list-group-item list-group-item-action" style="text-decoration: none;">
     <h5 class="mb-1">POLS 418: Quantitative Methods</h5>
   </a>
 </div>
