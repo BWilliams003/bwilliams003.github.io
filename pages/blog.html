@@ -4,7 +4,7 @@ permalink: /blog.html
 title: My Blog
 description: 
 header-img:  
-last-updated: 2020-10-30 5:55 PM
+last-updated: 2026-03-10
 ---
 
 <!-- Medium Posts Section -->
@@ -15,7 +15,7 @@ last-updated: 2020-10-30 5:55 PM
 {% assign medium_posts = site.data.medium_posts.posts %}
 {% if medium_posts and medium_posts.size > 0 %}
   {% for post in medium_posts %}
-    <div class="medium-card mb-4 mt-4" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05); cursor: pointer;" onclick="window.open('{{ post.link }}', '_blank')">
+    <div class="medium-card mb-4 mt-4" role="link" tabindex="0" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05); cursor: pointer;" onclick="window.open('{{ post.link }}', '_blank', 'noopener')" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.open('{{ post.link }}', '_blank', 'noopener');}">
       <div style="display: flex; align-items: center; gap: 20px;">
         <div style="flex: 1; min-width: 0;">
           {% assign subtitle_text = post.subtitle | strip_html | strip %}

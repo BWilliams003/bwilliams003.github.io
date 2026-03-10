@@ -3,7 +3,7 @@ layout: page
 permalink: /talks.html
 title: "Conference Presentations"
 description: A list of conference talks and workshops I've given.
-last-updated: 2026-02-14
+last-updated: 2026-03-09
 ---
 
 <h1 class="mb-4">Conference Presentations</h1>
@@ -22,7 +22,7 @@ last-updated: 2026-02-14
         
         <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px;">
           {% if talk.slides %}
-          <a href="{{ talk.slides }}" target="_blank" style="display: inline-flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-decoration: none; border: 1px solid #eee;">
+          <a href="{{ talk.slides }}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-decoration: none; border: 1px solid #eee;">
             <img src="{{ talk.slides_thumbnail }}" alt="{{ talk.Title }} Slides" style="width: 120px; height: 68px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
             <div>
               <p style="margin: 0; font-weight: 600; color: #242424;">View Slides</p>
@@ -32,7 +32,7 @@ last-updated: 2026-02-14
           {% endif %}
           
           {% if talk.video %}
-          <a href="{{ talk.video }}" target="_blank" style="display: inline-flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-decoration: none; border: 1px solid #eee;">
+          <a href="{{ talk.video }}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-decoration: none; border: 1px solid #eee;">
             <img src="{{ talk.video_thumbnail }}" alt="{{ talk.Title }} Recording" style="width: 120px; height: 68px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
             <div>
               <p style="margin: 0; font-weight: 600; color: #242424;">Watch Recording</p>

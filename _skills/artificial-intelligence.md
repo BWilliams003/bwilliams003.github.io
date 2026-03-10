@@ -13,7 +13,7 @@ At Kindo, my focus has been on how to integrate AI to augment security workflows
 
 At ODU, I have also had the chance to conduct a bit of AI-focused research, notably in my term paper for Cryptography for Cybersecurity, which was on *Security Risks and Best Practices for Implementing the Model Context Protocol*. Read the paper and two of my featured blogs written for Kindo below. The rest of my blogs can be found [here](/blog.html).
 
-<div class="medium-card mt-4 mb-4" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05); cursor: pointer;" onclick="window.open('/assets/pdf/CS-463-Course-Project.pdf', '_blank')">
+<div class="medium-card mt-4 mb-4" role="link" tabindex="0" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05); cursor: pointer;" onclick="window.open('/assets/pdf/CS-463-Course-Project.pdf', '_blank', 'noopener')" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.open('/assets/pdf/CS-463-Course-Project.pdf', '_blank', 'noopener');}">
 <div style="display: flex; align-items: center; gap: 20px;">
 <div style="flex: 1; min-width: 0;">
 <h4 style="font-weight: 700; margin-bottom: 8px; line-height: 1.3; color: #242424;">Security Risks and Best Practices for Implementing the Model Context Protocol</h4>
@@ -24,7 +24,7 @@ At ODU, I have also had the chance to conduct a bit of AI-focused research, nota
 </div>
 </div>
 
-<div class="medium-card mb-4 mt-4" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05); cursor: pointer;" onclick="window.open('https://medium.com/@DeepHat/unveiling-the-future-of-ai-a-masterclass-on-retrieval-augmented-generation-rag-ebd3b04ca253', '_blank')">
+<div class="medium-card mb-4 mt-4" role="link" tabindex="0" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05); cursor: pointer;" onclick="window.open('https://medium.com/@DeepHat/unveiling-the-future-of-ai-a-masterclass-on-retrieval-augmented-generation-rag-ebd3b04ca253', '_blank', 'noopener')" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.open('https://medium.com/@DeepHat/unveiling-the-future-of-ai-a-masterclass-on-retrieval-augmented-generation-rag-ebd3b04ca253', '_blank', 'noopener');}">
 <div style="display: flex; align-items: center; gap: 20px;">
 <div style="flex: 1; min-width: 0;">
 <h4 style="font-weight: 700; margin-bottom: 8px; line-height: 1.3; color: #242424;">Unveiling the Future of AI: A Masterclass on Retrieval Augmented Generation (RAG)</h4>
@@ -35,7 +35,7 @@ At ODU, I have also had the chance to conduct a bit of AI-focused research, nota
 </div>
 </div>
 
-<div class="medium-card mb-4 mt-4" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05); cursor: pointer;" onclick="window.open('https://medium.com/@B-Williams/whiterabbitneo-ai-follow-the-white-rabbit-to-ctf-success-05e758411f53', '_blank')">
+<div class="medium-card mb-4 mt-4" role="link" tabindex="0" style="width: 100%; padding: 20px; border-radius: 8px; background: #fff; box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05); cursor: pointer;" onclick="window.open('https://medium.com/@B-Williams/whiterabbitneo-ai-follow-the-white-rabbit-to-ctf-success-05e758411f53', '_blank', 'noopener')" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.open('https://medium.com/@B-Williams/whiterabbitneo-ai-follow-the-white-rabbit-to-ctf-success-05e758411f53', '_blank', 'noopener');}">
 <div style="display: flex; align-items: center; gap: 20px;">
 <div style="flex: 1; min-width: 0;">
 <h4 style="font-weight: 700; margin-bottom: 8px; line-height: 1.3; color: #242424;">WhiteRabbitNeo AI: Follow the white rabbit to CTF success</h4>
