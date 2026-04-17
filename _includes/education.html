@@ -1,7 +1,17 @@
  {% assign theme = site.data.themes[site.ui_theme] %}
   <div class="row align-items-center">
   {% for entry in site.data.education %}
-    <div class="col-md-6 mb-3 px-md-4">
+    {% if forloop.first %}
+      {% assign column_class = "col-md-6" %}
+      {% assign column_style = "flex: 0 0 55%; max-width: 55%;" %}
+    {% elsif forloop.index == 2 %}
+      {% assign column_class = "col-md-6" %}
+      {% assign column_style = "flex: 0 0 45%; max-width: 45%;" %}
+    {% else %}
+      {% assign column_class = "col-md-6" %}
+      {% assign column_style = "" %}
+    {% endif %}
+    <div class="{{ column_class }} mb-3 px-md-2" style="{{ column_style }}">
       <div class="media">
         <img src="{{ entry.Icon }}" class="mr-3 align-self-center" alt="..." style="width: 100px; height: 100px; object-fit: contain;">
         <div class="media-body">
